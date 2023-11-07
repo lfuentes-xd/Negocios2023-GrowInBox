@@ -1,0 +1,94 @@
+
+  {
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        },
+        {
+            "id": 1,
+            "nombre": "Producto ",
+            "descripcion": "ejemplo tienda.",
+            "precio": 19.99,
+            "stock": 100,
+            "imagen": "ruta/imagen_producto.jpg"
+        }
+
+    ]
+}
