@@ -4,7 +4,9 @@
       <p :class="{ 'hiddenA-text': x < 5, 'hiddenB-text': x >= 5 }">.</p>
       <h1 :class="{ 'hiddenA-text': x < 5, 'visible-text': x >= 5 }">Revisa los productos mas vendidos</h1>
       <p :class="{ 'hiddenA-text': x < 5, 'hiddenD-text': x >= 5 }">.</p>
+      <router-link to="/Catalogo">
       <button :class="{ 'hiddenD-button': x < 5, 'visible-button': x >= 5 }">Los Quiero</button>
+    </router-link>
       <p :class="{ 'hiddenA-text': x < 5, 'hiddenC-text': x >= 5 }">.</p>
     </div>
 
