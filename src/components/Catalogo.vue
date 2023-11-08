@@ -18,10 +18,7 @@
               </p>
             </div>
             <div class="p-6 pt-0">
-              <button
-                class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40" type="button">
-                Ver producto
-              </button>
+              <Router-link to="/Producto" class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"> Ver producto</Router-link>
             </div>
           </div>
         </div>
