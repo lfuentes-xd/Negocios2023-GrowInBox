@@ -3,91 +3,83 @@
     "productos": [
         {
             "id": 1,
-            "nombre": "Producto ",
-            "descripcion": "ejemplo tienda.",
+            "nombre": "GrowInBox - Kit de crecimiento",
+            "descripcion": "Este producto es un kit de jardinería innovador y fácil de usar, diseñado para aquellos que desean cultivar sus propias espinacas en casa. Aquí está una descripción más detallada: El producto consiste en una caja de cartón que actúa como una maceta. Dentro de la caja, encontrarás semillas de espinaca y tierra. La caja ha sido diseñada para mantener las condiciones ideales para el crecimiento de las espinacas, proporcionando un ambiente controlado y protegido. Para usar el producto, simplemente tienes que agregar agua a la caja. La tierra dentro de la caja absorberá el agua y proporcionará la humedad necesaria para que las semillas germinen. Una vez que las semillas hayan germinado, las plántulas de espinaca comenzarán a crecer.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_01.png"
         },
         {
-            "id": 1,
-            "nombre": "Producto ",
-            "descripcion": "ejemplo tienda.",
+            "id": 2,
+            "nombre": "Pala de mano pequeña.",
+            "descripcion": "Nuestras herramientas de jardinería son la combinación perfecta de funcionalidad y comodidad. Diseñadas con un enfoque en la ergonomía, estas herramientas reducen la tensión en las manos y las muñecas, permitiéndote trabajar en tu jardín durante más tiempo sin sentir fatiga. La calidad es una de nuestras principales prioridades. Cada herramienta está hecha con materiales duraderos que resisten el desgaste del uso regular. Ya sea que estés podando, cavando o sembrando, puedes confiar en nuestras herramientas para hacer el trabajo.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_02.png"
         },
         {
-            "id": 1,
-            "nombre": "Producto ",
-            "descripcion": "ejemplo tienda.",
+            "id": 3,
+            "nombre": "GrowInBox - Kit de crecimiento de espinacas",
+            "descripcion": "Este producto es un kit de jardinería innovador y fácil de usar, diseñado para aquellos que desean cultivar sus propias espinacas en casa. Aquí está una descripción más detallada: El producto consiste en una caja de cartón que actúa como una maceta. Dentro de la caja, encontrarás semillas de espinaca y tierra. La caja ha sido diseñada para mantener las condiciones ideales para el crecimiento de las espinacas, proporcionando un ambiente controlado y protegido. Para usar el producto, simplemente tienes que agregar agua a la caja. La tierra dentro de la caja absorberá el agua y proporcionará la humedad necesaria para que las semillas germinen. Una vez que las semillas hayan germinado, las plántulas de espinaca comenzarán a crecer.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_03.png"
         },
         {
-            "id": 1,
-            "nombre": "Producto ",
-            "descripcion": "ejemplo tienda.",
+            "id": 4,
+            "nombre": "Kit de crecimiento de tomates verde.",
+            "descripcion": "No te ensucies ni te canses, con este kit podrás tener tomates listos para comer. ",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_04.png"
         },
         {
-            "id": 1,
+            "id": 5,
             "nombre": "Producto ",
             "descripcion": "ejemplo tienda.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_05.png"
         },
         {
-            "id": 1,
+            "id": 6,
             "nombre": "Producto ",
             "descripcion": "ejemplo tienda.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_06.png"
         },
         {
-            "id": 1,
+            "id": 7,
             "nombre": "Producto ",
             "descripcion": "ejemplo tienda.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_07.png"
         },
         {
-            "id": 1,
+            "id": 8,
             "nombre": "Producto ",
             "descripcion": "ejemplo tienda.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_08.png"
         },
         {
-            "id": 1,
+            "id": 9,
             "nombre": "Producto ",
             "descripcion": "ejemplo tienda.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_09.png"
         },
         {
-            "id": 1,
+            "id": 10,
             "nombre": "Producto ",
             "descripcion": "ejemplo tienda.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
-        },
-        {
-            "id": 1,
-            "nombre": "Producto ",
-            "descripcion": "ejemplo tienda.",
-            "precio": 19.99,
-            "stock": 100,
-            "imagen": "ruta/imagen_producto.jpg"
+            "imagen": "product_img_10.png"
         }
 
     ]
