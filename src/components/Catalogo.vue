@@ -6,7 +6,7 @@
         <div v-for="(producto, index) in productos" :key="index" class="card-container">
           <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
             <div
-              class="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+              class="relative mx-4 -mt-6 h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
               <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image">
             </div>
             <div class="p-6">
@@ -48,7 +48,7 @@
   /* Contenedor de las Cards */
   .card-container {
     flex: 1;
-    min-height: 100px; /* Tamaño mínimo de cada card? */
+    min-height: 300px; /* Tamaño mínimo de cada card? */
   }
   </style>
   
