@@ -1,14 +1,21 @@
 <template>
+
   <div class="home">
-    <div @mousemove="onMousemoveA" :class="{ 'gray-bg': x < 5, 'blue-bg': x >= 5 }" class="BGAN gray-bg">
+
+    <div @mousemove="onMousemoveA" :class="{ 'gray-bg': x < 5, 'blue-bg': x >= 5 }" class="BGAN bg">
+
       <p :class="{ 'hiddenA-text': x < 5, 'hiddenB-text': x >= 5 }">.</p>
       <h1 :class="{ 'hiddenA-text': x < 5, 'visible-text': x >= 5 }">Revisa los productos mas vendidos</h1>
       <p :class="{ 'hiddenA-text': x < 5, 'hiddenD-text': x >= 5 }">.</p>
+
       <router-link to="/Catalogo">
       <button :class="{ 'hiddenD-button': x < 5, 'visible-button': x >= 5 }">Los Quiero</button>
     </router-link>
+
       <p :class="{ 'hiddenA-text': x < 5, 'hiddenC-text': x >= 5 }">.</p>
+
     </div>
+
 
     <div class="primaryBox">
       <div class="productContainer">
@@ -105,22 +112,20 @@ export default {
 
 <style scoped>
 /*Estilos para la animacion del banner*/
-.BGAN:hover {
-  transition: 5s background-color ease;
-}
 
-.gray-bg,
-.blue-bg {
+.bg {
   background-color: hsl(0, 0%, 100%);
-  background-image: url(~@/assets/GIB-HomeBanner.jpg);
-  background-size: 60% auto;
+  background-image: url(@/assets/GIB-HomeBanner.jpg); 
+  background-size: 100% auto;
   background-position: center;
   background-repeat: no-repeat;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border: 0px solid rgb(0, 0, 0);
+  margin: 0 auto;
+  max-width: 100% auto;
   transition: background-color 5s ease;
-}
-
-.blue-bg {
-  background-color: hsla(0, 0%, 100%, 0.575);
 }
 
 .hiddenA-text {
