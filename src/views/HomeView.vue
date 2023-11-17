@@ -73,7 +73,7 @@
                 Con estas herramientas olvídate de que te salgan ampollas en tus manos, pues estas son ergonómicas, de
                 buena calidad y duraderas.
               </p>
-              <a class="inline-block" href="#">
+              <a class="inline-block" href="#" title="Enlace para más información">
                 <button
                   class="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs sm:text-sm font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   type="button">
