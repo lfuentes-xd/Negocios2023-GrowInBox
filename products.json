@@ -7,7 +7,9 @@
             "descripcion": "Este producto es un kit de jardinería innovador y fácil de usar, diseñado para aquellos que desean cultivar sus propias espinacas en casa. Aquí está una descripción más detallada: El producto consiste en una caja de cartón que actúa como una maceta. Dentro de la caja, encontrarás semillas de espinaca y tierra. La caja ha sido diseñada para mantener las condiciones ideales para el crecimiento de las espinacas, proporcionando un ambiente controlado y protegido. Para usar el producto, simplemente tienes que agregar agua a la caja. La tierra dentro de la caja absorberá el agua y proporcionará la humedad necesaria para que las semillas germinen. Una vez que las semillas hayan germinado, las plántulas de espinaca comenzarán a crecer.",
             "precio": 19.99,
             "stock": 100,
-            "imagen": "product_img_01.png"
+            "imagen": "product_img_01.png",
+            "alt": "Imagen del producto 1",
+            "title": "Imagen producto"
         },
         {
             "id": 2,
