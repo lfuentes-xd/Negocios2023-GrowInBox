@@ -2,17 +2,17 @@
     <div class="container m-12">
       <h1 class="text-4xl">Productos</h1>
   
-      <div class="grid grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div v-for="(producto, index) in productos" :key="index" class="card-container">
           <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
             <div
               class="relative mx-4 -mt-6 h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-              <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image">
+              <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image" title="Imagen del producto">
             </div>
             <div class="p-6">
-              <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+              <h2 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                 {{ producto.nombre }}
-              </h5>
+              </h2>
               <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
                 {{ producto.descripcion }}
               </p>

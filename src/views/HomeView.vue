@@ -23,17 +23,17 @@
           <div class="relative w-full sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
             <div
               class="relative w-full sm:w-2/5 sm:shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
-              <img src="@/assets/GIB-Card1.jpg" alt="image" class="h-full w-full object-cover" />
+              <img src="@/assets/GIB-Card1.jpg" alt="image of spinach" title="image of product spinach" class="h-full w-full object-cover" />
             </div>
             <div class="p-6">
               <h6
                 class="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-pink-500 antialiased">
                 Destacado
               </h6>
-              <h4
+              <h2
                 class="mb-2 block font-sans text-2xl sm:text-3xl font-semibold sm:font-bold leading-snug tracking-normal text-blue-gray-900 antialiased">
                 Kit de Crecimiento
-              </h4>
+              </h2>
               <p class="mb-8 block font-sans text-base sm:text-lg font-normal leading-relaxed text-gray-700 antialiased">
                 No te canses ni te ensucies tratando de hacer crecer una planta frutal, mejor compra este kit donde solo
                 tendrás que darle agua y sol a tu planta para que pronto gustes de los frutos que esta da.
@@ -54,11 +54,11 @@
           </div>
         </div>
 
-        <div>
-          <div class="relative w-full sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+        <div class="w-full">
+          <div class=" w-full sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
             <div
               class="relative w-full sm:w-2/5 sm:shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
-              <img src="@/assets/GIB-Card2.jpg" alt="image" class="h-full w-full object-cover" />
+              <img src="@/assets/GIB-Card2.jpg" alt="image of shovel" title="product shovel" class="h-full w-full object-cover" />
             </div>
             <div class="p-6">
               <h6
