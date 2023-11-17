@@ -10,7 +10,7 @@
           <router-link to="/Catalogo"
             className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="catalogo">Cátalogo</router-link>
           <router-link to=""
-            className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="contacto">Contanto</router-link>
+            className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="contacto">Contacto</router-link>
         </div>
 
         <div class="flex space-x-4"> 
@@ -44,7 +44,7 @@
   <section id="cock" class="fixed max-w-md p-4 mx-auto bg-white border border-gray-200 dark:bg-gray-800 left-12 bottom-16 dark:border-gray-700 rounded-2xl">
     <h2 class="font-semibold text-gray-800 dark:text-white">🍪 We use cookies!</h2>
 
-    <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. <a href="#" class="font-medium text-gray-700 underline transition-colors duration-300 dark:hover:text-blue-400 dark:text-white hover:text-blue-500" title="para escoger en las cookies">Let me choose</a>. </p>
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. <a href="#" class="font-medium text-gray-700 underline transition-colors duration-300 dark:hover:text-blue-400 dark:text-white hover:text-blue-500" title="para escoger en las cookies">Permíteme elegir</a>. </p>
     
     <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">Closing this modal default settings will be saved.</p>
     
@@ -67,14 +67,11 @@
     </div>
 </section>
 
-
-
-
   <!-- component -->
   <section class="fixed max-w-md p-4 mx-auto bg-white border border-gray-200 dark:bg-gray-800 left-12 bottom-16 dark:border-gray-700 rounded-2xl">
     <h2 class="font-semibold text-gray-800 dark:text-white">🍪 Esta pagina utiliza Cookies!</h2>
 
-    <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Esta pagina web utiliza cookies que utilizaran servicios para la identificacion de tu navegador, ubicacion y para diferentes funciones dentro de la pagina web. <a href="#" class="font-medium text-gray-700 underline transition-colors duration-300 dark:hover:text-blue-400 dark:text-white hover:text-blue-500" title="para escoger en las cookies en español">Let me choose</a>. </p>
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Esta pagina web utiliza cookies que utilizaran servicios para la identificacion de tu navegador, ubicacion y para diferentes funciones dentro de la pagina web. <a href="#" class="font-medium text-gray-700 underline transition-colors duration-300 dark:hover:text-blue-400 dark:text-white hover:text-blue-500" title="para escoger en las cookies en español">Permíteme elegir</a>. </p>
     
     <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">Al cerrar esta ventana aceptaras las cookies</p>
     

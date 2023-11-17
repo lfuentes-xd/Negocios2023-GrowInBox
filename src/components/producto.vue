@@ -1,7 +1,7 @@
 <template>
     <div class="container flex m-5">
         <div class="w-1/2 ml-20">
-            <img src="../assets/product_images/product_img_01.png" alt="">
+            <img src="../assets/product_images/product_img_01.png" alt="Producto caja de cultivo GrowInBox menta" title="Menta GrowInBox">
         </div>
         <div class="w-1/2 mr-10  font-medium">
             <h1 class="text-4xl ml-5">GrowInBox- Kit de crecimiento de Espinacas</h1>
