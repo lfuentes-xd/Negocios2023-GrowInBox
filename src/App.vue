@@ -15,19 +15,19 @@
 
         <div class="flex space-x-4"> 
 
-          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="Buscar">
             <img class="w-6 h-6" src="../src/assets/Search.png" alt="search logo" title="logo search">
           </router-link>
           
-          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="Usuario">
             <img class="w-6 h-6" src="../src/assets/User.png" alt="User logo" title="logo user">
           </router-link>
           
-          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="Favoritos">
             <img class="w-6 h-6" src="../src/assets/Heart.png" alt="heart logo" title="logo heart">
           </router-link>
           
-          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+          <router-link to="login" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="Compras">
             <img class="w-6 h-6" src="../src/assets/shopbag.png" alt="bagshop logo" title="logo shopbag">
           </router-link>
           
