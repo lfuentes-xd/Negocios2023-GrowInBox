@@ -1,7 +1,9 @@
+
 <template>
     <div class="container flex m-5">
         <div class="w-1/2 ml-20">
-            <img src="../assets/product_images/product_img_01.png" alt="Producto caja de cultivo GrowInBox menta" title="Menta GrowInBox">
+            <img src="../assets/product_images/product_img_01.png" alt="Producto caja de cultivo GrowInBox menta"
+                title="Menta GrowInBox">
         </div>
         <div class="w-1/2 mr-10  font-medium">
             <h1 class="text-4xl ml-5">GrowInBox- Kit de crecimiento de Espinacas</h1>
@@ -10,9 +12,14 @@
 
 
             <button class="mx-10 border-solid border-2  border-black w-80 h-10">Agregar al carrito</button>
-            <button class="mx-10 mt-5 bg-black text-white w-80 h-10">Agregar al carrito</button>
+            <button class="mx-10 border-solid w-80 h-10">
+                <h1>Pagar ahora</h1>
+                <PayPalButton></PayPalButton>    
+            </button>
+                
 
-            <p class="mx-10 mt-5 font-medium text-justify">Este producto es un kit de jardinería innovador y fácil de usar, diseñado para
+            <p class="mx-10 mt-5 font-medium text-justify">Este producto es un kit de jardinería innovador y fácil de usar,
+                diseñado para
                 aquellos que desean cultivar
                 sus propias espinacas en casa. Aquí está una descripción más detallada:
                 El producto consiste en una caja de cartón que actúa como una maceta. Dentro de la caja, encontrarás
@@ -40,12 +47,18 @@
 </template>
     
 <script>
+import PayPalButton from './PayPalButton.vue';
+
 export default {
     name: 'ProductoUNO',
     props: {
         msg: String
-    }
-}
+    },
+    components: {
+        PayPalButton,
+    },
+};
 </script>
+
     
     
