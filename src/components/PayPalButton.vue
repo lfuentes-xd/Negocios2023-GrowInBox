@@ -15,20 +15,11 @@ try {
     console.error("failed to load the PayPal JS SDK script", error);
 }
 
-if (paypal) {
-    try {
-        await paypal.Buttons().render("#your-container-element");
-    } catch (error) {
-        console.error("failed to render the PayPal Buttons", error);
-    }
-}
-
-
-
 export default {
   data() {
     return {
       clientId: 'ARCm_a63Vg5nHPwvF1hsss9jUAxVmUTwLuX0EH316Syn2RCeRim7xHezUi_tetxSrZgmQPOZlioW695Z',
+      currency_code: 'MXN',
     };
   },
   mounted() {
@@ -42,7 +33,7 @@ export default {
             purchase_units: [
               {
                 amount: {
-                  value: '420.00', // set the amount you want to charge
+                  value: '329.00', // set the amount you want to charge
                 },
               },
             ],

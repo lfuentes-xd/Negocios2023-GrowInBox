@@ -7,7 +7,7 @@
         </div>
         <div class="w-1/2 mr-10  font-medium">
             <h1 class="text-4xl ml-5">GrowInBox- Kit de crecimiento de Espinacas</h1>
-            <p class="text-1xl ml-5 mt-6 ">$ 1.00 MXN</p>
+            <p class="text-1xl ml-5 mt-6 ">$ 329.00 MXN</p>
             <p class="text-1xl ml-5 mt-6 "> cantidad</p>
 
 
@@ -36,6 +36,15 @@
         </div>
 
     </div>
+
+    <div>
+
+        <StaticRatings></StaticRatings> 
+    </div>
+
+
+
+
     <div>
         <div class="text-center my-5">
             <h1 class="text-xl ml-5 text-center">¿Quieres recibir ofertas?</h1>
@@ -48,6 +57,7 @@
     
 <script>
 import PayPalButton from './PayPalButton.vue';
+import StaticRatings from './StaticRatings.vue';
 
 export default {
     name: 'ProductoUNO',
@@ -56,6 +66,7 @@ export default {
     },
     components: {
         PayPalButton,
+        StaticRatings,
     },
 };
 </script>
