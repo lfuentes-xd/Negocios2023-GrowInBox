@@ -33,7 +33,7 @@ export default {
             purchase_units: [
               {
                 amount: {
-                  value: '329.00', // set the amount you want to charge
+                  value: '19.18', // set the amount you want to charge
                 },
               },
             ],
