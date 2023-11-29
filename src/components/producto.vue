@@ -11,14 +11,14 @@
             <p class="text-1xl ml-5 mt-6 "> cantidad</p>
 
 
-            <button class="mx-10 border-solid border-2  border-black w-80 h-10">Agregar al carrito</button>
+            <button class="my-5 mx-10 border-solid border-2  border-black w-80 h-10">Agregar al carrito</button>
             <button class="mx-10 border-solid w-80 h-10">
-                <h1>Pagar ahora</h1>
-                <PayPalButton></PayPalButton>    
+                <!-- <h1>Pagar ahora</h1> -->
+                <PayPalButton class=""></PayPalButton>    
             </button>
                 
 
-            <p class="mx-10 mt-5 font-medium text-justify">Este producto es un kit de jardinería innovador y fácil de usar,
+            <p class="mx-10 mt-15 font-medium text-justify">Este producto es un kit de jardinería innovador y fácil de usar,
                 diseñado para
                 aquellos que desean cultivar
                 sus propias espinacas en casa. Aquí está una descripción más detallada:
