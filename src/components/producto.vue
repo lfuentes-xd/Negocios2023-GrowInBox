@@ -1,5 +1,5 @@
-
 <template>
+    <navbar></navbar>
     <div class="container flex m-5">
         <div class="w-1/2 ml-20">
             <img src="../assets/product_images/product_img_01.png" alt="Producto caja de cultivo GrowInBox menta"
@@ -58,7 +58,7 @@
 <script>
 import PayPalButton from './PayPalButton.vue';
 import StaticRatings from './StaticRatings.vue';
-
+import navbar from "../components/navbar.vue";
 export default {
     name: 'ProductoUNO',
     props: {
@@ -67,6 +67,7 @@ export default {
     components: {
         PayPalButton,
         StaticRatings,
+        navbar
     },
 };
 </script>

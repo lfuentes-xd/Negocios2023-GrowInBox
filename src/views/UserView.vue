@@ -1,4 +1,5 @@
 <template>
+    <navbar></navbar>
     <div class="m-5 sm:x-auto lg:m-5  ">
         <div class="w-full text-center">
             <h1 class="text-3xl">Usuario</h1>
@@ -12,7 +13,11 @@
 </template>
 
 <script>
+import navbar from "../components/navbar.vue"
 export default {
-    name: 'ViewUser'
+    name: 'ViewUser', 
+    components:{
+       navbar 
+    }
 }
 </script>

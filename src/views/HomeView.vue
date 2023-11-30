@@ -1,4 +1,6 @@
 <template>
+  <navbar></navbar>
+
   <div class="home">
 
     <div @mousemove="onMousemoveA" :class="{ 'hiddenBG': x < 5, 'visibleBG': x >= 5 }" style="margin-bottom: 1cm;">
@@ -93,7 +95,12 @@
 <script>
 import { ref } from 'vue';
 
+import navbar from "../components/navbar.vue"
+
 export default {
+  components:{
+    navbar
+  },
   data() {
     return {
       x: ref(0)
@@ -207,4 +214,5 @@ export default {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
   transform: scale(1.05);
   transition: all 0.3s ease;
-}</style>
+}
+</style>
