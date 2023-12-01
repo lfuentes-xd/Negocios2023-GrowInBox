@@ -5,8 +5,28 @@
 
     <h1 class="text-4xl">Productos</h1>
 
+    <form>
+      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
+        </div>
+        <input  type="search"  id="default-search"
+          class=" w-1/2 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          v-model="buscar"
+          placeholder="Search Mockups, Logos..." required>
+        
+      </div>
+    </form>
+
+
+
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div v-for="(producto, index) in productos" :key="index" class="card-container">
+      <div v-for="(producto, index) in productosFiltrados" :key="index" class="card-container">
         <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
           <div
             class="relative mx-4 -mt-6 h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
@@ -44,8 +64,20 @@ export default {
   },
   data() {
     return {
-      productos: productosData.productos
+      productos: productosData.productos,
+      buscar:''
     };
+  },
+  computed:{
+    productosFiltrados() {
+    if (!this.buscar) {
+      return this.productos; // Devuelve todos los productos si no hay texto en la búsqueda
+    } else {
+      return this.productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(this.buscar.toLowerCase())
+      );
+    }
+  }
   }
 };
 </script>
