@@ -2,8 +2,7 @@
     <navbar></navbar>
 
         <div class="container flex m-5">
-
-                    
+            
                 <div class="w-1/2 ml-20">
                     <img :src="producto && producto.imagen ? require(`@/assets/product_images/${producto.imagen}`) : ''"
                         alt="Product Image" title="Imagen del producto" class="w-full h-auto object-cover object-center">
