@@ -4,6 +4,7 @@ import CatalogoComponent from '../components/Catalogo.vue'
 import producto from "../components/producto.vue"
 import UserView from "../views/UserView"
 import ProductAdd from "../views/ProductAdd"
+import OrdenesCompra from "../components/OrdenesCompra.vue"
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/OrdenesCompra',
+    name: 'OrdenesCompra',
+    component: OrdenesCompra
   },
   {
     path: '/Catalogo',

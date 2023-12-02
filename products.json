@@ -1,5 +1,4 @@
-
-  {
+{
     "productos": [
         {
             "id": 1,
@@ -83,6 +82,26 @@
             "stock": 100,
             "imagen": "product_img_10.png"
         }
-
-    ]
+    ],
+    "productosusuario": {
+        "id": 1,
+        "nombre": "Victor",
+        "email": "cliente@hotmail.com",
+        "contraseña": "123456789",
+        "productosuser": [
+            {
+                "id": 10,
+                "nombre": "GrownInBox planta de fresas desde casa.",
+                "descripcion": "Este producto es un kit de jardinería innovador y fácil de usar, diseñado para aquellos que desean cultivar sus propias espinacas en casa. Aquí está una descripción más detallada: El producto consiste en una caja de cartón que actúa como una maceta. Dentro de la caja, encontrarás semillas de espinaca y tierra. La caja ha sido diseñada para mantener las condiciones ideales para el crecimiento de las espinacas, proporcionando un ambiente controlado y protegido.",
+                "precio": 19.99
+            },
+            {
+                "id": 7,
+                "nombre": "Kit de crecimiento de Jitomates",
+                "descripcion": "No batalles más, con este kit de jitomate rojo podras tener muy buenos frutos, sin tanto esfuerzo y con solo dos pasos, regar y darles sol.",
+                "precio": 19.99
+                
+            }
+        ]
+    }
 }
