@@ -18,16 +18,17 @@
 
                 <div class="flex space-x-4">
 
-                    <router-link to="login"
-                        className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        title="Buscar">
-                        <img class="w-6 h-6" src="../assets/Search.png" alt="search logo" title="logo search">
-                    </router-link>
 
                     <router-link to="/User"
                         className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         title="Usuario">
                         <img class="w-6 h-6" src="../assets/User.png" alt="User logo" title="logo user">
+                    </router-link>
+                    
+                    <router-link to="/OrdenesCompra"
+                        className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        title="OrdenesCompra">
+                        Ordenes de Compra                    
                     </router-link>
 
                     <router-link to="login"
@@ -48,6 +49,7 @@
 
         </div>
     </nav>
+
 </template>
 
 <script>
