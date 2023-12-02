@@ -4,24 +4,37 @@
     <navbar></navbar>
 
     <h1 class="text-4xl">Productos</h1>
-
-    <form>
-      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-      <div class="relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            fill="none" viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-          </svg>
-        </div>
-        <input  type="search"  id="default-search"
-          class=" w-1/2 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          v-model="buscar"
-          placeholder="Search Mockups, Logos..." required>
-        
+    <div>
+      <div style=" position: relative;left: 80%; ">
+        <select name="opciones" id="opciones" v-model="filtro"
+          style="border-color: black ;border: 2px; border-style: solid;">
+          <option value="" selected>Ordenar</option>
+          <option value="AZ">A-Z</option>
+          <option value="ZA">Z-A</option>
+          <option value="mayor">Precio mayor a menor</option>
+          <option value="menor">Precio menor a mayor </option>
+        </select>
       </div>
-    </form>
+
+      <form>
+        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+          </div>
+          <input type="search" id="default-search"
+            class=" w-1/2 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            v-model="buscar" placeholder="Search Mockups, Logos..." required>
+
+        </div>
+      </form>
+    </div>
+
+
 
 
 
@@ -52,7 +65,7 @@
     </div>
   </div>
 </template>
-  
+    
 <script>
 import productosData from '../../products.json'
 import navbar from "../components/navbar.vue"
@@ -65,23 +78,48 @@ export default {
   data() {
     return {
       productos: productosData.productos,
-      buscar:''
+      buscar: '',
+      filtro: ''
     };
   },
-  computed:{
+  computed: {
     productosFiltrados() {
-    if (!this.buscar) {
-      return this.productos; // Devuelve todos los productos si no hay texto en la búsqueda
-    } else {
-      return this.productos.filter(producto =>
-        producto.nombre.toLowerCase().includes(this.buscar.toLowerCase())
-      );
+      let productosFiltrados = this.productos;
+      console.log("aqui", this.filtro);
+
+
+      if (this.buscar) {
+        productosFiltrados = productosFiltrados.filter(producto =>
+          producto.nombre.toLowerCase().includes(this.buscar.toLowerCase())
+        );
+      }
+
+      if (this.filtro === 'AZ') {
+        productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+      }
+      if (this.filtro === 'ZA') {
+        productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+
+      }
+      if (this.filtro === 'mayor') {
+        productosFiltrados.sort((a, b) => b.precio - a.precio);
+      }
+      if (this.filtro === 'menor') {
+        productosFiltrados.sort((a, b) => a.precio - b.precio);
+      }
+      if (!this.filtro) { // Si es "Ordenar", no aplicar filtro
+      console.log("Productos ordenar:", productosFiltrados);
+        return productosFiltrados;
+      }
+      console.log("Productos filtrados después del filtro:", productosFiltrados);
+
+      return productosFiltrados;
     }
-  }
+
   }
 };
 </script>
-  
+    
 <style scoped>
 /* Estilo del grid */
 .grid {
@@ -95,6 +133,6 @@ export default {
   /* Tamaño mínimo de cada card? */
 }
 </style>
-  
-  
     
+    
+      

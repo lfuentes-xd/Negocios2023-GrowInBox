@@ -15,7 +15,7 @@
             "id": 2,
             "nombre": "Pala de mano pequeña.",
             "descripcion": "Nuestras herramientas de jardinería son la combinación perfecta de funcionalidad y comodidad. Diseñadas con un enfoque en la ergonomía, estas herramientas reducen la tensión en las manos y las muñecas, permitiéndote trabajar en tu jardín durante más tiempo sin sentir fatiga. La calidad es una de nuestras principales prioridades. Cada herramienta está hecha con materiales duraderos que resisten el desgaste del uso regular. Ya sea que estés podando, cavando o sembrando, puedes confiar en nuestras herramientas para hacer el trabajo.",
-            "precio": 19.99,
+            "precio": 10.99,
             "stock": 100,
             "imagen": "product_img_02.png"
         },
@@ -31,7 +31,7 @@
             "id": 4,
             "nombre": "Kit de crecimiento de tomates verde.",
             "descripcion": "No te ensucies ni te canses, con este kit podrás tener tomates listos para comer. ",
-            "precio": 19.99,
+            "precio": 20.00,
             "stock": 100,
             "imagen": "product_img_04.png"
         },
@@ -39,7 +39,7 @@
             "id": 5,
             "nombre": "GrownInBox planta de fresas desde casa.",
             "descripcion": "Este producto es un kit de jardinería innovador y fácil de usar, diseñado para aquellos que desean cultivar sus propias espinacas en casa. Aquí está una descripción más detallada: El producto consiste en una caja de cartón que actúa como una maceta. Dentro de la caja, encontrarás semillas de espinaca y tierra. La caja ha sido diseñada para mantener las condiciones ideales para el crecimiento de las espinacas, proporcionando un ambiente controlado y protegido.",
-            "precio": 19.99,
+            "precio": 25.99,
             "stock": 100,
             "imagen": "product_img_05.png"
         },
@@ -47,7 +47,7 @@
             "id": 6,
             "nombre": "Rastrillo Jardinero Classic 16 Dientesmango 54 Truper17882",
             "descripcion": "El Rastrillo Jardinero Classic 16 Dientesmango 54 Truper17882 es la herramienta perfecta para mantener tu jardín impecable. Con su cabeza de acero de 16 de ancho, podrás recoger hojas y ramas de manera eficiente. Su diseño resistente garantiza durabilidad y eficacia en cada uso. El mango de 54 te brinda comodidad y facilidad de manejo. Ideal para cualquier tipo de jardín, este rastrillo Truper es una excelente opción para mantener tu espacio exterior en perfectas condiciones.",
-            "precio": 19.99,
+            "precio": 15.50,
             "stock": 100,
             "imagen": "product_img_06.png"
         },
@@ -63,7 +63,7 @@
             "id": 8,
             "nombre": "Mini Motosierra Inalámbrica de Mano, Motosierra portátil con 2 baterías recargables de 24V",
             "descripcion": "Esta motosierra de 6 pulgadas viene con 2 pilas recargables de 2000 mAh. Una batería puede cortar de forma discontinua 100 piezas de madera de 15 cm de diámetro y se puede cargar completamente en 1,5 horas. Hay un indicador de estado de la batería para que pueda verificar la energía fácilmente.",
-            "precio": 19.99,
+            "precio": 30.00,
             "stock": 100,
             "imagen": "product_img_08.png"
         },
@@ -71,7 +71,7 @@
             "id": 9,
             "nombre": "Pala T-1000 Redonda Puño 'y' Mango 18 Truper 11167",
             "descripcion": "La Pala T-1000 Redonda Puño 'y' Mango 18 Truper 11167 es una herramienta esencial para cualquier trabajo de jardinería o construcción. Con un mango de 76.2 cm y un largo total de 102.8 cm, esta pala es perfecta para aquellos trabajos que requieren un poco más de alcance. Su diseño redondo la hace ideal para cavar y mover tierra, mientras que su peso de 1.5 kg asegura que sea lo suficientemente resistente para manejar trabajos pesados, pero aún así sea fácil de manejar.",
-            "precio": 19.99,
+            "precio": 11.99,
             "stock": 100,
             "imagen": "product_img_09.png"
         },
