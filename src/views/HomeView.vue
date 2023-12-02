@@ -17,7 +17,6 @@
 
     </div>
 
-
     <div>
       <div class="max-w-screen-md mx-auto">
         <div class="mb-4 sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
@@ -85,9 +84,6 @@
         </div>
       </div>
     </div>
-
-
-
 
   </div>
 </template>

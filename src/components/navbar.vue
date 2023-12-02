@@ -41,11 +41,8 @@
                         title="Compras">
                         <img class="w-6 h-6" src="../assets/shopbag.png" alt="bagshop logo" title="logo shopbag">
                     </router-link>
-
                 </div>
-
             </div>
-
         </div>
     </nav>
 
