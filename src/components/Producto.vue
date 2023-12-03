@@ -12,7 +12,7 @@
             <div class="w-1/2 mr-10 font-medium">
                 <h1 class="text-4xl ml-5">{{ producto && producto.nombre ? producto.nombre : '' }}</h1>
                 <p class="text-1xl ml-5 mt-6 ">$ {{ producto && producto.precio ? producto.precio : '' }} MXN</p>
-                <p class="text-1xl ml-5 mt-6 ">{{ producto && producto.stock ? producto.stock : '' }}</p>
+                <p class="text-1xl ml-5 mt-6 ">Stock Disponible: {{ producto && producto.stock ? producto.stock : '' }}</p>
 
                 <button class="my-5 mx-10 border-solid border-2 border-black w-80 h-10">Agregar al carrito</button>
                     <button class="mx-10 border-solid w-80 h-10">
@@ -25,7 +25,7 @@
             </div>
 
             <div>
-                <StaticRatings></StaticRatings>
+                <StaticRatings :productId="producto.id" :userLoggedIn="userLoggedIn"></StaticRatings>
             </div>
 
         <div>

@@ -6,6 +6,7 @@ import UserView from "../views/UserView"
 import ProductAdd from "../views/ProductAdd"
 import UserAdd from "../views/Useradd"
 import OrdenesCompra from "../components/OrdenesCompra.vue"
+import reviewForm from "../components/reviewForm.vue"
 
 const routes = [
   {
@@ -48,8 +49,12 @@ const routes = [
     path: '/UserAdd',
     name: 'UserAdd',
     component: UserAdd
+  },
+  {
+    path: '/reviewForm',
+    name: 'reviewForm',
+    component: reviewForm
   }
-
 
 ]
 

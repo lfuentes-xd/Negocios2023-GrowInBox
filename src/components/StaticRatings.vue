@@ -1,46 +1,72 @@
 <template>
   <div class="user-ratings">
-    
-    <div class="user-comment">
-      <b>{{ userName }}</b>
-      <p>{{ userComment }}</p>
+    <div v-for="review in productReviews" :key="review.id" class="user-comment">
+      <b>{{ review.userName }}</b>
+      <p>{{ review.comment }}</p>
       <div class="rating-stars">
-      <i v-for="star in Math.floor(userRating)" :key="star" class="fas fa-star"></i>
-      <i v-for="emptyStar in 5 - Math.floor(userRating)" :key="'empty' + emptyStar" class="far fa-star"></i>
+        <i v-for="star in Math.floor(review.rating)" :key="star" class="fas fa-star"></i>
+        <i v-for="emptyStar in 5 - Math.floor(review.rating)" :key="'empty' + emptyStar" class="far fa-star"></i>
+      </div>
+      <span class="rating-value">{{ review.rating }}/5</span>
     </div>
-      <span class="rating-value">{{ userRating }}/5</span>
-    </div>
+
+    <!--Modal de reseña-->
+    <review-form v-if="showReviewForm" :productId="productId" :reviews="reviews" @addReview="addReview"
+      @close="showReviewForm = false"></review-form>
+
+    <button  class="py-3 my-8 text-lg bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white" @click="showReviewForm = true">Dejar reseña</button>
   </div>
 </template>
 
 <script>
+import ReviewForm from "../components/reviewForm.vue"
+import reviewsData from '../../reviews.json';
+
 export default {
+  components: {
+    ReviewForm
+  },
+  props: ['productId', 'userLoggedIn'],
   data() {
     return {
-      userRating: 1, // Change this to your desired hardcoded user rating
-      userComment: "No compren, me llegó un jabón >:(", // Add the user comment here
-      userName: "Jesús Rodríguez:"
+      reviews: reviewsData.reviews,
+      showReviewForm: false,
     };
   },
+  methods: {
+    addReview(newReview) {
+      // Agregar la nueva reseña al array de reseñas
+      this.reviews.push(newReview);
+    }
+  },
+  computed: {
+    productReviews() {
+      return this.reviews.filter(review => review.productId === this.productId);
+    }
+  }
 };
 </script>
 
 <style scoped>
 .user-ratings {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
 }
 
 .rating-stars {
-  color: gold; /* Change the color to your desired rating color */
+  color: gold;
+  /* Change the color to your desired rating color */
   font-size: 1.2rem;
   margin-bottom: 5px;
 }
 
 .rating-value {
   font-size: 1rem;
-  color: #555; /* Change the color to your desired text color */
+  color: #555;
+  /* Change the color to your desired text color */
 }
 
 .user-comment {
@@ -49,15 +75,5 @@ export default {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-top: 10px;
-}
-
-.user-name {
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  margin-top: 10px;
 }
 </style>
