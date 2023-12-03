@@ -4,6 +4,7 @@ import CatalogoComponent from '../components/Catalogo.vue'
 import Producto from "../components/Producto.vue"
 import UserView from "../views/UserView"
 import ProductAdd from "../views/ProductAdd"
+import UserAdd from "../views/Useradd"
 import OrdenesCompra from "../components/OrdenesCompra.vue"
 
 const routes = [
@@ -24,23 +25,29 @@ const routes = [
   },
   {
     path: '/Catalogo',
-    name: 'Catalogo', 
+    name: 'Catalogo',
     component: CatalogoComponent
   },
   {
     path: '/Producto/:id',
-    name: 'Producto', 
+    name: 'Producto',
     component: Producto
   },
   {
-    path: '/User', 
-    name: 'User', 
+    path: '/User',
+    name: 'User',
     component: UserView
-  }, 
+  },
   {
-    path: '/Productadd', 
+    path: '/Productadd',
     name: 'ProductAdd',
     component: ProductAdd
+  },
+
+  {
+    path: '/UserAdd',
+    name: 'UserAdd',
+    component: UserAdd
   }
 
 

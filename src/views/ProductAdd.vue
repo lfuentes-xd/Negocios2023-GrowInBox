@@ -1,4 +1,5 @@
 <template>
+    <navbar2></navbar2>
     <h1 class="mt-10 ml-10 my-3 text-2xl">Productos administración</h1>
 
     <button @click="isOpen = true"
@@ -86,12 +87,12 @@
 </template>
 
 <script>
-
+import navbar2 from '@/components/navbar2.vue';
 import Products from '../../products.json'
 export default {
     name: "Products_add",
     components: {
-        // Modal,
+        navbar2
     },
     data() {
         return {

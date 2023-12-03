@@ -1,0 +1,16 @@
+{
+    "Usuarios": [
+        {
+            "id": 1,
+            "Nombre": "Leonel De las Torres Cruz",
+            "Correo": "12345678@aguascalientes.tecnm.mx",
+            "Password": "12345678"
+        },
+        {
+            "id": 2,
+            "Nombre": "Dulce del valle ",
+            "Correo": "87654321@aguascalientes.tecnm.mx",
+            "Password": "12345678"
+        }
+    ]
+}
