@@ -15,7 +15,7 @@
                     <label for="rating" class="sr-only">Calificación:</label>
                     <div class="items-center">
                         <div class="flex space-x-2">
-                            <!-- Ajusté el tamaño de las estrellas aquí -->
+
                             <i v-for="star in 5" :key="star" @click="setRating(star)"
                                 :class="star <= selectedRating ? 'w-14 h-14 text-yellow-500 fas fa-star mt-5' : 'w-14 h-14 text-gray-500 far fa-star mt-5'"></i>
                         </div>

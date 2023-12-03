@@ -38,10 +38,6 @@
     </div>
   </div>
 
-
-
-
-
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-align m-[1cm]">
     <div v-for="(producto, index) in productosFiltrados" :key="index" class="card-container">
       <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">

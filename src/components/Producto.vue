@@ -69,7 +69,6 @@ export default {
         // Agrega una verificación adicional para asegurarte de que producto.nombre esté definido
         if (!this.producto || !this.producto.nombre) {
             console.error('Producto no encontrado o nombre no definido:', this.producto);
-            // Puedes redirigir al usuario a una página de error o hacer algo más aquí
         }
     }
 };

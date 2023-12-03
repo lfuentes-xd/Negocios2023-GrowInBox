@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     addReview(newReview) {
-      // Agregar la nueva reseña al array de reseñas
       this.reviews.push(newReview);
     }
   },
@@ -58,7 +57,6 @@ export default {
 
 .rating-stars {
   color: gold;
-  /* Change the color to your desired rating color */
   font-size: 1.2rem;
   margin-bottom: 5px;
 }
@@ -66,7 +64,6 @@ export default {
 .rating-value {
   font-size: 1rem;
   color: #555;
-  /* Change the color to your desired text color */
 }
 
 .user-comment {
