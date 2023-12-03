@@ -11,9 +11,6 @@
                     <router-link to="/Catalogo"
                         className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         title="catalogo">Cátalogo</router-link>
-                    <router-link to=""
-                        className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        title="contacto">Contacto</router-link>
                 </div>
 
                 <div class="flex space-x-4">
