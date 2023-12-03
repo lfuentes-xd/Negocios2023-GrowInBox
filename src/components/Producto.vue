@@ -30,7 +30,7 @@
 
         <div>
             <div class="text-center my-5">
-                <h1 class="text-xl ml-5 text-center">¿Quieres recibir ofertas?</h1>
+                <h1 class="text-xl ml-5 text-center mb-10">¿Quieres recibir ofertas?</h1>
                 <input class="w-50 border-solid border-2 border-gray-500 w-80 h-10" type="text"
                     placeholder="Correo electrónico">
             </div>
