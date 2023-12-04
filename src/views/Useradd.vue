@@ -121,7 +121,6 @@ export default {
             }
             this.isOpen = false;
         },
-
         DeleteUser(id) {
 
             // Buscar en el arreglo
