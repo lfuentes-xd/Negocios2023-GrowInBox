@@ -7,6 +7,10 @@ import ProductAdd from "../views/ProductAdd"
 import UserAdd from "../views/Useradd"
 import OrdenesCompra from "../components/OrdenesCompra.vue"
 import reviewForm from "../components/reviewForm.vue"
+import LoginComponent from "../components/LoginComponent.vue"
+import SignUp from "../components/SignUp.vue"
+import WishlistComponent from "../components/WishlistComponent.vue"
+import CartComponent from "../components/CartComponent.vue"
 
 const routes = [
   {
@@ -54,6 +58,26 @@ const routes = [
     path: '/reviewForm',
     name: 'reviewForm',
     component: reviewForm
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: LoginComponent
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/Wishlist',
+    name: 'Wishlist',
+    component: WishlistComponent
+  },
+  {
+    path: '/Cart',
+    name: 'Cart',
+    component: CartComponent
   }
 
 ]

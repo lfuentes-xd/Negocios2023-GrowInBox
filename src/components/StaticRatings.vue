@@ -14,7 +14,7 @@
     <review-form v-if="showReviewForm" :productId="productId" :reviews="reviews" @addReview="addReview"
       @close="showReviewForm = false"></review-form>
 
-    <button  class="py-3 my-8 text-lg bg-gradient-to-r from-green-600 to-green-700 rounded-xl text-white" @click="showReviewForm = true">Dejar reseña</button>
+    <button  class="py-3 my-8 text-lg bg-gradient-to-r from-green-800 to-teal-900 rounded-xl text-white" @click="showReviewForm = true">Dejar reseña</button>
   </div>
 </template>
 
