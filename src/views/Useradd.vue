@@ -21,6 +21,9 @@
                                     Nombre
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                    Contraseña
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     Correo
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
@@ -35,6 +38,9 @@
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {{ Usuarios.Nombre }}
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    {{ Usuarios.Contrasena }}
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {{ Usuarios.Correo }}
@@ -70,6 +76,8 @@
                 <input v-model="Nombre" id="Nombre" type="text" class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Correo">Correo</label>
                 <input v-model="Correo" id="Correo" type="email" class="mt-3 block w-full p-2 border border-gray-500">
+                <label for="Correo">Contraseña</label>
+                <input v-model="Contrasena" id="Contrasena" type="password" class="mt-3 block w-full p-2 border border-gray-500">
             </div>
             <div class="flex justify-end px-6 py-4 space-x-3">
                 <button @click="cancelar()"
@@ -99,6 +107,7 @@ export default {
             Usuarios: Usuarios.Usuarios,
             Nombre: "",
             Correo: "",
+            Contrasena: "",
             isEditing: false,
         };
     },
@@ -108,11 +117,12 @@ export default {
             this.isOpen = true;
         },
         addUser() {
-            if (this.Nombre != '' && this.Correo != '') {
+            if (this.Nombre != '' && this.Correo != '' && this.Contrasena != '') {
                 const nuevoUsuario = {
                     id: this.Usuarios[this.Usuarios.length - 1].id + 1,
                     Nombre: this.Nombre,
-                    Correo: this.Correo
+                    Correo: this.Correo,
+                    Contrasena: this.Contrasena
                 };
                 this.Usuarios.push(nuevoUsuario);
                 this.limpiar()
@@ -140,6 +150,7 @@ export default {
         EditUser(Usuario) {
             this.Nombre = Usuario.Nombre;
             this.Correo = Usuario.Correo;
+            this.Contrasena = Usuario.Contrasena
             this.currentProductId = Usuario.id; // Guarda el ID del producto que se está editando
             this.isOpen = true;
             this.isEditing = true;
@@ -150,6 +161,7 @@ export default {
             if (UsuariosToUpdate) {
                 UsuariosToUpdate.Nombre = this.Nombre;
                 UsuariosToUpdate.Correo = this.Correo;
+                UsuariosToUpdate.Contrasena = this.Contrasena;
             }
             this.isOpen = false;
             this.isEditing = false;
@@ -162,6 +174,7 @@ export default {
         limpiar() {
             this.Nombre = " ";
             this.Correo = " ";
+            this.Contrasena = " ";
         }
     },
 };
