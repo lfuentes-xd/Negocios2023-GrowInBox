@@ -16,7 +16,8 @@
 
                 <button class="my-5 mx-10 border-solid border-2 border-black w-80 h-10">Agregar al carrito</button>
                     <button class="mx-10 border-solid w-80 h-10">
-                        <PayPalButton class=""></PayPalButton>
+                        <!-- <PayPalButton class=""></PayPalButton> -->
+                        <PayPalButton :precio="producto && producto.precio ? producto.precio : 0"></PayPalButton>
                     </button>
 
                 <p class="mx-10 mt-15 font-medium text-justify">{{ producto && producto.descripcion ? producto.descripcion :
