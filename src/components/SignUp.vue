@@ -7,13 +7,11 @@
         </div>
 
         <div class="flex items-center justify-center mt-6">
-          <router-link to="/login"
-            class="w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b ">
+          <router-link to="/login" class="w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b ">
             Iniciar Sesion
           </router-link>
 
-          <span
-            class="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 ">
+          <span class="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 ">
             Crear cuenta
           </span>
         </div>
@@ -114,6 +112,9 @@ export default {
 
       // Redirección a la página principal después del éxito
       if (this.cuentaCreada) {
+        // Muestra una alerta con el mensaje
+        alert("¡La cuenta se ha creado con éxito!");
+
         this.$router.push("/Login"); // Ajusta la ruta según tu configuración
       }
     },
