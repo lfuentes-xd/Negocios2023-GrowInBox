@@ -57,7 +57,7 @@
   
   <script>
   export default {
-    // You can add component options here
+    name: "LoginComponent",
   }
   </script>
   

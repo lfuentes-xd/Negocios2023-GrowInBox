@@ -7,6 +7,9 @@ import ProductAdd from "../views/ProductAdd"
 import UserAdd from "../views/Useradd"
 import OrdenesCompra from "../components/OrdenesCompra.vue"
 import reviewForm from "../components/reviewForm.vue"
+import LoginComponent from "../components/LoginComponent.vue"
+
+
 
 const routes = [
   {
@@ -54,6 +57,11 @@ const routes = [
     path: '/reviewForm',
     name: 'reviewForm',
     component: reviewForm
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: LoginComponent
   }
 
 ]
