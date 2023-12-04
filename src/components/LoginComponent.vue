@@ -1,5 +1,5 @@
 <template>
-  <<<<<<< HEAD <div>
+  <div>
     <navbar></navbar>
 
     <div class="mt-20 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -31,10 +31,7 @@
           </div>
 
 
-          <div class="flex items-center justify-between mt-4">
-            <router-link to="/LoginAdmin" class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">
-              Soy Administrador
-            </router-link>
+          <div class="flex justify-center mt-4">
 
             <router-link to="/Productadd">
               <button router-link to="/Productadd" type="submit"
@@ -47,6 +44,7 @@
 
       </div>
     </div>
+  </div>
 </template>
 
 <script>
