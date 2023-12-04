@@ -19,6 +19,7 @@
                         class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" title="Usuario">
                         <img class="w-6 h-6" src="../assets/User.png" alt="User logo" title="logo user" />
                     </router-link>
+
                     <router-link to="/Login"
                         className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         title="Login">
@@ -63,8 +64,9 @@
                                 title="Usuario">
                                 Usuario
                             </router-link>
+
                             <router-link to="/Login"
-                                className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 title="Login">
                                 Inicio de sesión
                             </router-link>
@@ -72,16 +74,17 @@
                                 title="OrdenesCompra">
                                 Órdenes de compra
                             </router-link>
+
                             <router-link to="/Wishlist"
-                                className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 title="Favoritos">
-                                <img class="w-6 h-6" src="../assets/Heart.png" alt="heart logo" title="logo heart">
+                                Lista de Deseos
                             </router-link>
 
                             <router-link to="/Cart"
-                                className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 title="Compras">
-                                <img class="w-6 h-6" src="../assets/shopbag.png" alt="bagshop logo" title="logo shopbag">
+                                Carrito de Compra
                             </router-link>
 
                         </div>
