@@ -34,7 +34,7 @@
                         Órdenes de compra
                     </router-link>
 
-                    <router-link to="login"
+                    <router-link to="/Wishlist"
                         className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         title="Favoritos">
                         <img class="w-6 h-6" src="../assets/Heart.png" alt="heart logo" title="logo heart">
