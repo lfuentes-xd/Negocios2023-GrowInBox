@@ -54,6 +54,7 @@
                         </svg>
                     </button>
 
+                    
                     <!-- Menú desplegable para pantallas pequeñas -->
                     <div v-if="mobileMenuOpen" class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right">
                         <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
