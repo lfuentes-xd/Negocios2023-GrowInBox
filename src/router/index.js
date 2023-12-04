@@ -8,6 +8,7 @@ import UserAdd from "../views/Useradd"
 import OrdenesCompra from "../components/OrdenesCompra.vue"
 import reviewForm from "../components/reviewForm.vue"
 import LoginComponent from "../components/LoginComponent.vue"
+import LoginAdmin from "../components/LoginAdmin.vue"
 import SignUp from "../components/SignUp.vue"
 import WishlistComponent from "../components/WishlistComponent.vue"
 import CartComponent from "../components/CartComponent.vue"
@@ -63,6 +64,11 @@ const routes = [
     path: '/Login',
     name: 'Login',
     component: LoginComponent
+  },
+  {
+    path: '/LoginAdmin',
+    name: 'LoginAdmin',
+    component: LoginAdmin
   },
   {
     path: '/SignUp',

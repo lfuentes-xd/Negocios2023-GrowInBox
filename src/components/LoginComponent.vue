@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <<<<<<< HEAD <div>
     <navbar></navbar>
 
     <div class="mt-20 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -30,19 +30,23 @@
               type="password" placeholder="Contraseña" aria-label="Password" />
           </div>
 
-          <div class="flex justify-center mt-4">
+
+          <div class="flex items-center justify-between mt-4">
+            <router-link to="/LoginAdmin" class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">
+              Soy Administrador
+            </router-link>
+
             <router-link to="/Productadd">
-              <button type="submit"
+              <button router-link to="/Productadd" type="submit"
                 class="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                 Iniciar Sesión
               </button>
             </router-link>
           </div>
-
         </form>
+
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -54,10 +58,10 @@ export default {
   },
   methods: {
     signIn() {
-      // Lógica de autenticación, si es necesario
+      alert("sesion iniciada");
 
       // Redirige a la página principal (HomeView.vue)
-      this.$router.push({ name: "home" }); // Asegúrate de tener 'name: "home"' configurado en tus rutas
+      this.$router.push({ name: "home" });
     },
   },
 };
