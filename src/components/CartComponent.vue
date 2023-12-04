@@ -16,7 +16,7 @@
                 <th></th>
             </thead>
             <tbody>
-                <tr v-for="producto in wishlistData" :key="producto.id" class="bg-white border-b ">
+                <tr v-for="producto in cartData" :key="producto.id" class="bg-white border-b ">
                     <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ producto.nombre }}</td>
                     <td class="relative mx-4 -mt-4 h-20 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
                         <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image"
@@ -50,7 +50,7 @@
 <script>
 
 import navbar from "../components/navbar.vue"
-import wishlist from '../../wishlist.json'
+import cart from '../../cart.json'
 export default {
     name: 'CartComponent',
     props: {
@@ -61,7 +61,7 @@ export default {
     },
     data() {
         return {
-            wishlistData: wishlist.productos,
+            cartData: cart.productos,
         }
     }
 }
