@@ -17,7 +17,7 @@
             <tbody>
                 <tr v-for="producto in wishlistData" :key="producto.id" class="bg-white border-b ">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ producto.nombre }}</td>
-                    <td class="relative mx-4 -mt-4 h-40 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+                    <td class="relative mx-4 -mt-4 h-40 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
                         <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image"
                             title="Imagen del producto" class="w-full h-full object-cover object-center max-w-full">
                     </td>
