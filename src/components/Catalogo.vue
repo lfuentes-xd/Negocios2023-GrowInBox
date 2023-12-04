@@ -38,8 +38,8 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-align m-[1cm]">
-    <div v-for="(producto, index) in productosFiltrados" :key="index" class="card-container">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div v-for="(producto, index) in productosFiltrados" :key="index" class="grid">
       <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
 
         <div
@@ -48,7 +48,7 @@
             title="Imagen del producto" class="w-full h-full object-cover object-center">
         </div>
 
-        <div class="p-6">
+        <div class="p-6 realtive">
 
           <h2
             class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -58,19 +58,22 @@
             class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
             ${{ producto.precio }}
           </h1>
-          <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-            {{ producto.descripcion }}
-          </p>
+          <div class="max-lines-2 overflow-ellipsis overflow-hidden">
+            <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+              {{ producto.descripcion }}
+            </p>
+          </div>
 
-        </div>
+          <br>
+          <br>
 
-        <div class="p-6 pt-0">
-
-          <router-link :to="{ name: 'Producto', params: { id: producto.id } }"
-            class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
-            title="Producto">
-            Ver producto
-          </router-link>
+          <div class="p-6 pt-0 absolute bottom-0">
+            <router-link :to="{ name: 'Producto', params: { id: producto.id } }"
+              class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
+              title="Producto">
+              Ver producto
+            </router-link>
+          </div>
 
         </div>
 
@@ -139,11 +142,12 @@ export default {
   display: grid;
 }
 
-/* Contenedor de las Cards */
-.card-container {
-  flex: 2;
-  min-height: auto;
-  /* Tamaño mínimo de cada card? */
+.max-lines-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 10rem;
+  /* Set the max height based on your font size and line height */
 }
 </style>
     
