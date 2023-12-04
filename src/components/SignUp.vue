@@ -185,10 +185,7 @@
     },
     methods: {
       crearCuenta() {
-        // Lógica para crear la cuenta (simulada)
-        // ...
-  
-        // Simulación de éxito
+        
         this.cuentaCreada = true;
   
         // Redirección a la página principal después del éxito
