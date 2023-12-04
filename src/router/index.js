@@ -8,7 +8,7 @@ import UserAdd from "../views/Useradd"
 import OrdenesCompra from "../components/OrdenesCompra.vue"
 import reviewForm from "../components/reviewForm.vue"
 import LoginComponent from "../components/LoginComponent.vue"
-
+import SignUp from "../components/SignUp.vue"
 
 
 const routes = [
@@ -62,6 +62,11 @@ const routes = [
     path: '/Login',
     name: 'Login',
     component: LoginComponent
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp
   }
 
 ]
