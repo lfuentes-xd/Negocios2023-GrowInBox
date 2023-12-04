@@ -21,9 +21,11 @@
                                     Producto
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                    Imagen del Producto
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     Precio
                                 </th>
-                                
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     Descripcion
                                 </th>
@@ -39,6 +41,9 @@
                                 </td>
                                 <td class="text-sm text-gray-900  px-6 py-4 ">
                                     {{ Products.nombre }}
+                                </td>
+                                <td class="text-sm text-gray-900 px-6 py-4">
+                                    {{ Products.imagen }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4">
                                     {{ Products.precio }}
@@ -121,12 +126,12 @@ export default {
         },
         Addproduct() {
 
-            if (this.product != '' && this.price != ''  && this.Desc != '') {
+            if (this.product != '' && this.price != '' && this.Desc != '') {
 
                 const nuevoProducto = {
                     id: this.Products[this.Products.length - 1].id + 1,
                     nombre: this.product,
-                    precio: this.price, 
+                    precio: this.price,
                     descripcion: this.Desc
 
                 };
