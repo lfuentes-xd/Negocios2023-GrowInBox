@@ -149,10 +149,16 @@
           <!-- Sign Up Button -->
           <div class="mt-6">
             <button
+              @click="crearCuenta"
               class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
             >
               Crear cuenta
             </button>
+  
+            <!-- Success Message -->
+            <div v-if="cuentaCreada" class="mt-4 text-green-600">
+              ¡La cuenta se ha creado con éxito!
+            </div>
   
             <!-- Already have an account link -->
             <div class="mt-6 text-center">
@@ -160,7 +166,7 @@
                 to="/login"
                 class="text-sm text-blue-500 hover:underline dark:text-blue-400"
               >
-                Ya tienes cuenta?
+                ¿Ya tienes cuenta?
               </router-link>
             </div>
           </div>
@@ -172,6 +178,25 @@
   <script>
   export default {
     name: "SignUp",
+    data() {
+      return {
+        cuentaCreada: false,
+      };
+    },
+    methods: {
+      crearCuenta() {
+        // Lógica para crear la cuenta (simulada)
+        // ...
+  
+        // Simulación de éxito
+        this.cuentaCreada = true;
+  
+        // Redirección a la página principal después del éxito
+        if (this.cuentaCreada) {
+          this.$router.push("/"); // Ajusta la ruta según tu configuración
+        }
+      },
+    },
   };
   </script>
   
