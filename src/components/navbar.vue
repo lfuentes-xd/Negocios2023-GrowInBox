@@ -40,7 +40,7 @@
                         <img class="w-6 h-6" src="../assets/Heart.png" alt="heart logo" title="logo heart">
                     </router-link>
 
-                    <router-link to="login"
+                    <router-link to="/Cart"
                         className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         title="Compras">
                         <img class="w-6 h-6" src="../assets/shopbag.png" alt="bagshop logo" title="logo shopbag">
