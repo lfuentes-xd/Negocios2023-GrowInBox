@@ -5,7 +5,7 @@
           <div class="flex justify-center mx-auto">
             <img
               class="w-auto h-7 sm:h-8"
-              src="https://merakiui.com/images/logo.svg"
+              src="https://deluxe-buttercream-282925.netlify.app/img/logo.749677ed.png"
               alt="Logo"
             />
           </div>

@@ -38,12 +38,7 @@
         </div>
 
         <div class="flex items-center justify-between mt-4">
-          <router-link
-            to="/LoginAdmin"
-            class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500"
-          >
-            Soy Administrador
-          </router-link>
+          
 
           <button
             type="submit"
@@ -62,7 +57,7 @@ export default {
   name: "LoginComponent",
   methods: {
     signIn() {
-      alert ("sesion iniciada");
+      
 
       // Redirige a la página principal (HomeView.vue)
       this.$router.push({ name: "home" }); 
@@ -72,5 +67,5 @@ export default {
 </script>
 
 <style scoped>
-/* Puedes agregar estilos específicos del componente aquí */
+/* Puedes agregar estilos específicos aquí */
 </style>
