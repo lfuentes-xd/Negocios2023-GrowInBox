@@ -22,9 +22,9 @@
                         <img class="w-6 h-6" src="../assets/User.png" alt="User logo" title="logo user">
                     </router-link>
                     
-                    <router-link to="/OrdenesCompra"
+                    <router-link to="/Login"
                         className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        title="Usuario">
+                        title="Login">
                         Inicio de sesión
                     </router-link>
 
