@@ -25,7 +25,7 @@
                     <router-link to="/OrdenesCompra"
                         className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         title="Usuario">
-                        Órdenes de compra
+                        Inicio de sesión
                     </router-link>
 
                     <router-link to="/OrdenesCompra"
