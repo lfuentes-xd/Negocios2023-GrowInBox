@@ -39,14 +39,12 @@
               tendrás que darle agua y sol a tu planta para que pronto gustes de los frutos que esta da.
             </p>
             <a class="inline-block" href="#" title="Enlace para más información">
-              <button class="btn-more-info">
-                Más información
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                  stroke="currentColor" aria-hidden="true" class="h-4 w-4 sm:h-6 sm:w-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3">
-                  </path>
-                </svg>
-              </button>
+
+              <router-link :to="{ name: 'Producto', params: { id: 1 } }"
+                class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
+                title="Producto">
+                Ver producto
+              </router-link>
             </a>
           </div>
         </div>
@@ -71,14 +69,12 @@
               calidad y duraderas.
             </p>
             <a class="inline-block" href="#" title="Enlace para más información herramientas">
-              <button class="btn-more-info">
-                Más información
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                  stroke="currentColor" aria-hidden="true" class="h-4 w-4 sm:h-6 sm:w-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3">
-                  </path>
-                </svg>
-              </button>
+
+              <router-link :to="{ name: 'Producto', params: { id: 2 } }"
+                class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
+                title="Producto">
+                Ver producto
+              </router-link>
             </a>
           </div>
         </div>
@@ -94,7 +90,7 @@ import { ref } from 'vue';
 import navbar from "../components/navbar.vue"
 
 export default {
-  components:{
+  components: {
     navbar
   },
   data() {
