@@ -21,10 +21,15 @@
                 <PayPalButton :precio="producto && producto.precio ? producto.precio : 0"></PayPalButton>
             </button>
 
+            <div class="wishlist">
+                <span class="heart" :class="{ 'clicked': isClicked }" @click="toggleWishlist"></span>
+            </div>
+
             <p class="mx-10 mt-15 font-medium text-justify">{{ producto && producto.descripcion ? producto.descripcion :
                 '' }}</p>
         </div>
     </div>
+
 
     <div>
         <StaticRatings :productId="producto.id" :userLoggedIn="userLoggedIn"></StaticRatings>
@@ -38,7 +43,7 @@
         </div>
     </div>
 </template>
-  
+    
 <script>
 import PayPalButton from './PayPalButton.vue';
 import StaticRatings from './StaticRatings.vue';
@@ -49,12 +54,16 @@ export default {
     name: 'ProductoUNO',
     data() {
         return {
-            producto: {}
+            producto: {},
+            isClicked: false
         };
     },
     methods: {
         showAlert() {
             alert('Producto agregado al carrito');
+        },
+        toggleWishlist() {
+            this.isClicked = !this.isClicked; // Cambia el estado del corazón al hacer clic
         }
     },
     components: {
@@ -81,5 +90,51 @@ export default {
 };
 </script>
 
-    
-    
+        
+        
+
+
+
+<style>
+  .heart {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transform: rotate(-45deg);
+    background-color: rgba(0, 0, 0, 0.959);
+    cursor: pointer;
+    margin: 20px auto;
+    margin-left: 50px; /* Mover hacia la derecha */
+  }
+
+  .heart::before,
+  .heart::after {
+    content: '';
+    width: 20px;
+    height: 32px;
+    border-radius: 20px 20px 0 0;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .heart::before {
+    top: -20px;
+    left: 0;
+    transform: rotate(-45deg);
+  }
+
+  .heart::after {
+    top: -20px;
+    left: 10px;
+    transform: rotate(45deg);
+  }
+
+  .heart.clicked {
+    background-color: rgb(0, 0, 0);
+  }
+
+  .heart.clicked::before,
+  .heart.clicked::after {
+    background-color: rgb(255, 0, 0);
+  }
+</style>
