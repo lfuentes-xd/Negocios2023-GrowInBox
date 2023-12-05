@@ -31,10 +31,17 @@
           </div>
 
 
-          <div class="flex justify-center mt-4">
+          <div class="flex justify-between mt-4">
 
             <router-link to="/Productadd">
               <button router-link to="/Productadd" type="submit" @click="signIn"
+                class="px-6 py-2 text-sm font-medium mr-5 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                Solo Personal Autorizado
+              </button>
+            </router-link>
+
+            <router-link to="/User">
+              <button router-link to="/User" type="submit" @click="signIn"
                 class="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                 Iniciar Sesión
               </button>

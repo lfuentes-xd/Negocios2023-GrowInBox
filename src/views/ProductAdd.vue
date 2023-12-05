@@ -3,7 +3,7 @@
     <h1 class="mt-10 ml-20 my-3 text-2xl">Productos administración</h1>
 
     <button @click="isOpen = true"
-        class="ml-20 middle none center rounded-lg bg-blue-500 hover:bg-blue-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white">
+        class="ml-20 middle none center rounded-lg bg-blue-500 hover:bg-red-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white">
         Agregar.
     </button>
 
@@ -11,7 +11,7 @@
         <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
-                    <table class="min-w-full">
+                    <table class="min-w-full border-blue-500 border-collapse border">
                         <thead class="">
                             <tr>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody class="">
-                            <tr class="bg-white border-b" v-for="(Products, index) in Products" :key="index">
+                            <tr class="bg-white" v-for="(Products, index) in Products" :key="index">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                     {{ Products.id }}
                                 </td>

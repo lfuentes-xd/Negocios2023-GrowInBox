@@ -1,4 +1,14 @@
 <template>
+  <div class="flex items-center justify-center">
+    <div>
+      <review-form v-if="showReviewForm" :productId="productId" :reviews="reviews" @addReview="addReview"
+        @close="showReviewForm = false"></review-form>
+
+      <button class="py-5 my-8 text-lg bg-gradient-to-r from-green-800 to-teal-900 rounded-xl text-white"
+        @click="showReviewForm = true">Dejar reseña</button>
+    </div>
+  </div>
+
   <div class="user-ratings">
     <div v-for="review in productReviews" :key="review.id" class="user-comment">
       <b>{{ review.userName }}</b>
@@ -10,11 +20,6 @@
       <span class="rating-value">{{ review.rating }}/5</span>
     </div>
 
-    <!--Modal de reseña-->
-    <review-form v-if="showReviewForm" :productId="productId" :reviews="reviews" @addReview="addReview"
-      @close="showReviewForm = false"></review-form>
-
-    <button  class="py-3 my-8 text-lg bg-gradient-to-r from-green-800 to-teal-900 rounded-xl text-white" @click="showReviewForm = true">Dejar reseña</button>
   </div>
 </template>
 
