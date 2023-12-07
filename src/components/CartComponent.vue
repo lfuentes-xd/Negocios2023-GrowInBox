@@ -18,7 +18,8 @@
             <tbody>
                 <tr v-for="producto in cartData" :key="producto.id" class="bg-white border-b ">
                     <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ producto.nombre }}</td>
-                    <td class="relative mx-4 -mt-4 h-20 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
+                    <td
+                        class="relative mx-4 -mt-4 h-20 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
                         <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image"
                             title="Imagen del producto" class="w-full h-full object-cover object-center max-w-full">
                     </td>
@@ -27,20 +28,20 @@
                         <button class="bg-teal-700 text-white px-4 py-2 rounded-l rounded-r">Comprar</button>
                         <br>
                         <br>
-                        <button class="bg-green-700 text-white px-4 py-2 rounded-l">-</button>
-                        <button class="bg-gray-200 text-gray-700 px-4 py-2">1</button>
-                        <button class="bg-green-700 text-white px-4 py-2 rounded-r">+</button>
-
+                        <button @click="decrement(producto)" class="bg-green-700 text-white px-4 py-2 rounded-l">-</button>
+                        <button class="bg-gray-200 text-gray-700 px-4 py-2">{{ producto.cantidad }}</button>
+                        <button @click="increment(producto)" class="bg-green-700 text-white px-4 py-2 rounded-r">+</button>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3"></td>
+                    <td colspan="2"> Total: </td>
+                    <td>$ {{ total }}</td>
                     <td>
-                        <button class="bg-teal-700 text-white px-4 py-2 rounded-l rounded-r">Comprar carrito</button>
+                        <button class="bg-teal-700 text-white px-4 py-2 rounded-l rounded-r" @click="goToPayPal">Comprar carrito</button>
                     </td>
-                    
+
                 </tr>
-                
+
             </tbody>
         </table>
 
@@ -48,7 +49,6 @@
 </template>
 
 <script>
-
 import navbar from "../components/navbar.vue"
 import cart from '../../cart.json'
 export default {
@@ -59,10 +59,38 @@ export default {
     components: {
         navbar
     },
+    methods: {
+        increment(producto) {
+            producto.cantidad++;
+        },
+        decrement(producto) {
+            if (producto.cantidad > 0) {
+                producto.cantidad--;
+            }
+        },
+        goToPayPal() {
+            this.$router.push({ name: 'paypal', query: { total: this.total } });
+            console.log(this.total);
+        }
+    },
+    computed: {
+        total() {
+            return this.cartData.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
+        }
+    },
+
     data() {
         return {
-            cartData: cart.productos,
+            cartData: cart.productos.map(producto => ({ ...producto, cantidad: 1 })),
         }
+
     }
 }
 </script>
+
+<style scoped>
+#button2 {
+      display: none;
+    }
+
+</style>

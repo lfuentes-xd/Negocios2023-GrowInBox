@@ -11,6 +11,7 @@ import LoginComponent from "../components/LoginComponent.vue"
 import SignUp from "../components/SignUp.vue"
 import WishlistComponent from "../components/WishlistComponent.vue"
 import CartComponent from "../components/CartComponent.vue"
+import PayPalView from "../components/PayPalView.vue"
 
 const routes = [
   {
@@ -78,6 +79,12 @@ const routes = [
     path: '/Cart',
     name: 'Cart',
     component: CartComponent
+  },
+  {
+    path: '/paypal',
+    name: 'paypal',
+    component: PayPalView,
+    props: true
   }
 
 ]
