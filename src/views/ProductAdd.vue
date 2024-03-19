@@ -144,7 +144,7 @@ export default {
             const file = e.target.files[0]; // Obtener el archivo seleccionado
             this.image = file; // Guardar el archivo en una variable de datos (por ejemplo, 'image')
             const fileName = file.name;
-            //console.log("Nombre de la imagen:", fileName);
+            console.log("Nombre de la imagen:", fileName);
         },
 
         // Método para enviar los datos del producto al API para guardarlos
