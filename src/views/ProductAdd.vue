@@ -156,7 +156,7 @@ export default {
                 formData.append('Name', this.product);
                 formData.append('Description', this.Desc);
                 formData.append('Price', this.price);
-                formData.append('Image', this.image.name); // Aquí sigue enviando el archivo completo
+                formData.append('Image', this.image); // Aquí sigue enviando el archivo completo
                 formData.append('IdcategoriesFK', '1'); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
                 // Realizar la solicitud POST para guardar el producto
