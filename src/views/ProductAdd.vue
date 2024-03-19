@@ -35,32 +35,32 @@
                             </tr>
                         </thead>
                         <tbody class="">
-                            <tr class="bg-white" v-for="(Products, index) in Products" :key="index">
+                            <tr class="bg-white" v-for="(product, index) in products" :key="index">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                    {{ Products.id }}
-                                </td>
-                                <td class="text-sm text-gray-900  px-6 py-4 ">
-                                    {{ Products.nombre }}
-                                </td>
-                                <td class="text-sm text-gray-900 px-6 py-4">
-                                    {{ Products.imagen }}
-                                </td>
-                                <td class="text-sm text-gray-900 px-6 py-4">
-                                    {{ Products.precio }}
+                                    {{ product.id }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
-                                    {{ Products.descripcion }}
+                                    {{ product.Name }} <!-- Cambiado de Products.nombre a product.Name -->
+                                </td>
+                                <td class="text-sm text-gray-900 px-6 py-4">
+                                    {{ product.Image }} <!-- Añadida una etiqueta img para mostrar la imagen -->
+                                </td>
+                                <td class="text-sm text-gray-900 px-6 py-4">
+                                    {{ product.Price }} <!-- Cambiado de Products.precio a product.Price -->
+                                </td>
+                                <td class="text-sm text-gray-900 px-6 py-4 ">
+                                    {{ product.Description }}
+                                    <!-- Cambiado de Products.descripcion a product.Description -->
                                 </td>
                                 <td class="text-sm text-gray-900  px-6 py-4 ">
                                     <button
                                         class="middle none center rounded-lg bg-yellow-500 hover:bg-yellow-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white "
-                                        @click="EditProduct(Products)">
-                                        Modificar.
+                                        @click="EditProduct(product)">
+                                        Modificar
                                     </button>
-
                                     <button
                                         class="mx-2 middle none center rounded-lg bg-red-500 hover:bg-red-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white"
-                                        @click="DeleteProduct(Products.id)">
+                                        @click="DeleteProduct(product.id)">
                                         Eliminar
                                     </button>
                                 </td>
@@ -80,19 +80,25 @@
                 <h3 class="text-2xl font-semibold text-gray-800">Agregar producto</h3>
             </div>
             <div class="px-6 py-4 text-lg text-gray-600">
-                <label for="Producto">Producto</label>
+                <label for="Producto">Nombre del Producto</label>
                 <input v-model="product" id="Producto" type="text" class="mt-3 block w-full p-2 border border-gray-500">
+
+                <label for="image">Imagen</label>
+                <input id="image" type="file" class="mt-3 block w-full p-2 border border-gray-500"
+                    @change="onFileChange">
+
                 <label for="precio">Precio</label>
                 <input v-model="price" id="precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Descripcion">Descripcion</label>
                 <input v-model="Desc" id="Descripcion" type="text" class="mt-3 block w-full p-2 border border-gray-500">
+
             </div>
             <div class="flex justify-end px-6 py-4 space-x-3">
-                <button @click="cancelar()"
+                <button @click="Cancelar()"
                     class="px-6 py-2 text-black border border-gray-300 rounded hover:bg-gray-500">Cancelar</button>
                 <button v-if="isEditing" @click="UpdateProduct()"
                     class="px-6 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Actualizar</button>
-                <button v-else @click="Addproduct()"
+                <button v-else @click="AddProduct()"
                     class="px-6 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Guardar</button>
             </div>
 
@@ -102,7 +108,8 @@
 
 <script>
 
-import Products from '../../products.json'
+
+import axios from 'axios';
 import navbar2 from "../../src/components/navbar2.vue"
 export default {
     name: "Products_add",
@@ -111,37 +118,79 @@ export default {
     },
     data() {
         return {
-            Products: Products.productos,
+            products: [],
+            image: null,
             isOpen: false,
-            price: "",
-            product: "",
             isEditing: false,
-            Desc: ""
         };
+    },
+    mounted() {
+        axios.get('http://localhost/public/api/indexProducts')
+            .then(response => {
+                this.products = response.data;
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.error('Error al obtener los productos:', error);
+            });
     },
 
     methods: {
         openModal() {
             this.isOpen = true;
         },
-        Addproduct() {
+        // Método para manejar el cambio en la selección de la imagen
+        onFileChange(e) {
+            const file = e.target.files[0]; // Obtener el archivo seleccionado
+            this.image = file; // Guardar el archivo en una variable de datos (por ejemplo, 'image')
+            const fileName = file.name;
+            //console.log("Nombre de la imagen:", fileName);
+        },
 
-            if (this.product != '' && this.price != '' && this.Desc != '') {
+        // Método para enviar los datos del producto al API para guardarlos
+        AddProduct() {
+            // Verificar si los campos no están vacíos
+            if (this.product && this.price && this.Desc && this.image) {
+                // Crear un objeto FormData para enviar los datos del producto, incluida la imagen
+                const formData = new FormData();
+                formData.append('Name', this.product);
+                formData.append('Description', this.Desc);
+                formData.append('Price', this.price);
+                formData.append('Image', this.image.name); // Aquí sigue enviando el archivo completo
+                formData.append('IdcategoriesFK', '1'); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
-                const nuevoProducto = {
-                    id: this.Products[this.Products.length - 1].id + 1,
-                    nombre: this.product,
-                    precio: this.price,
-                    descripcion: this.Desc
-
-                };
-
-                this.Products.push(nuevoProducto);
-                this.limpiar()
+                // Realizar la solicitud POST para guardar el producto
+                axios.post('http://localhost/public/api/storeProducts', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido como 'multipart/form-data' para enviar archivos
+                    }
+                })
+                    .then(response => {
+                        // Manejar la respuesta
+                        console.log(response.data);
+                        // Cerrar la ventana modal y limpiar los campos del formulario
+                        this.limpiar();
+                        this.isOpen = false;
+                        // Recargar los productos después de agregar uno nuevo
+                        this.loadProducts();
+                    })
+                    .catch(error => {
+                        console.error('Error al agregar el producto:', error);
+                        alert('Ha ocurrido un error al agregar el producto. Por favor, inténtalo de nuevo.');
+                    });
             } else {
-                alert('Los campos no pueden ir vacios')
+                alert('Los campos no pueden ir vacíos');
             }
-            this.isOpen = false;
+        },
+        loadProducts() {
+            axios.get('http://localhost/public/api/indexProducts')
+                .then(response => {
+                    this.products = response.data;
+                    console.log(response.data)
+                })
+                .catch(error => {
+                    console.error('Error al obtener los productos:', error);
+                });
         },
         DeleteProduct(id) {
 
@@ -178,15 +227,16 @@ export default {
             this.isEditing = false;
             this.limpiar()
         },
-        cancelar() {
-            this.isOpen = false;
+        Cancelar() {
             this.limpiar();
+            this.isOpen = false;
         },
         limpiar() {
-            this.product = " ";
-            this.price = " ";
+            this.product = "";
+            this.price = "";
             this.Desc = "";
-        }
+            this.image = null; // Limpiar la imagen seleccionada
+        },
     },
 };
 </script>
