@@ -39,7 +39,7 @@
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-    <div v-for="(producto, index) in products" :key="index" class="grid">
+      <div v-for="(producto, index) in filteredProducts" :key="index" class="grid">
       <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
 
         <!-- <div
@@ -113,39 +113,27 @@ export default {
       });
   },
   computed: {
-    productosFiltrados() {
-      let productosFiltrados = this.productos;
-      console.log("aqui", this.filtro);
+    filteredProducts() {
+      let filtered = this.products;
 
+      // Filtrar por texto de búsqueda
+      filtered = filtered.filter(producto => {
+        return producto.Name.toLowerCase().includes(this.buscar.toLowerCase());
+      });
 
-      if (this.buscar) {
-        productosFiltrados = productosFiltrados.filter(producto =>
-          producto.nombre.toLowerCase().includes(this.buscar.toLowerCase())
-        );
+      // Ordenar según el filtro seleccionado
+      if (this.filtro === "AZ") {
+        filtered = filtered.sort((a, b) => a.Name.localeCompare(b.Name));
+      } else if (this.filtro === "ZA") {
+        filtered = filtered.sort((a, b) => b.Name.localeCompare(a.Name));
+      } else if (this.filtro === "mayor") {
+        filtered = filtered.sort((a, b) => b.Price - a.Price);
+      } else if (this.filtro === "menor") {
+        filtered = filtered.sort((a, b) => a.Price - b.Price);
       }
 
-      if (this.filtro === 'AZ') {
-        productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
-      }
-      if (this.filtro === 'ZA') {
-        productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre));
-
-      }
-      if (this.filtro === 'mayor') {
-        productosFiltrados.sort((a, b) => b.precio - a.precio);
-      }
-      if (this.filtro === 'menor') {
-        productosFiltrados.sort((a, b) => a.precio - b.precio);
-      }
-      if (!this.filtro) { // Si es "Ordenar", no aplicar filtro
-        console.log("Productos ordenar:", productosFiltrados);
-        return productosFiltrados;
-      }
-      console.log("Productos filtrados después del filtro:", productosFiltrados);
-
-      return productosFiltrados;
+      return filtered;
     }
-
   }
 };
 </script>

@@ -15,10 +15,10 @@
                         <thead class="">
                             <tr>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    id
+                                    ID
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    Producto
+                                    Nombre del Producto
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     Imagen del Producto
@@ -40,21 +40,19 @@
                                     {{ product.id }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
-                                    {{ product.Name }} <!-- Cambiado de Products.nombre a product.Name -->
+                                    {{ product.Name }} 
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4">
-                                    {{ product.Image }} <!-- Añadida una etiqueta img para mostrar la imagen -->
+                                    {{ product.Image }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4">
-                                    {{ product.Price }} <!-- Cambiado de Products.precio a product.Price -->
+                                    {{ product.Price }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
                                     {{ product.Description }}
-                                    <!-- Cambiado de Products.descripcion a product.Description -->
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
                                     {{ product.IdcategoriesFK }}
-                                    <!-- Cambiado de Products.descripcion a product.Description -->
                                 </td>
                                 <td class="text-sm text-gray-900  px-6 py-4 ">
                                     <button
@@ -84,25 +82,22 @@
                 <h3 class="text-2xl font-semibold text-gray-800">Agregar producto</h3>
             </div>
             <div class="px-6 py-4 text-lg text-gray-600">
+                
                 <label for="Producto">Nombre del Producto</label>
                 <input v-model="product" id="Producto" type="text" class="mt-3 block w-full p-2 border border-gray-500">
-
                 <label for="image">Imagen</label>
                 <input id="image" type="file" class="mt-3 block w-full p-2 border border-gray-500"
                     @change="onFileChange">
-
                 <label for="precio">Precio</label>
                 <input v-model="price" id="precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Descripcion">Descripcion</label>
                 <input v-model="Desc" id="Descripcion" type="text" class="mt-3 block w-full p-2 border border-gray-500">
-
                 <label for="Categoria">Categoría</label>
                 <select v-model="categoria" id="Categoria" class="mt-3 block w-full p-2 border border-gray-500">
                     <option value="" disabled selected>Selecciona una categoría</option> <!-- Opción predeterminada -->
                     <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.Name }}
                     </option>
                 </select>
-
             </div>
             <div class="flex justify-end px-6 py-4 space-x-3">
                 <button @click="Cancelar()"
