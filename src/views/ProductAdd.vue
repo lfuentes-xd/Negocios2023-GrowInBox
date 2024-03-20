@@ -30,7 +30,7 @@
                                     Descripcion
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    Acciones
+                                    Categoria
                                 </th>
                             </tr>
                         </thead>
@@ -50,6 +50,10 @@
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
                                     {{ product.Description }}
+                                    <!-- Cambiado de Products.descripcion a product.Description -->
+                                </td>
+                                <td class="text-sm text-gray-900 px-6 py-4 ">
+                                    {{ product.IdcategoriesFK }}
                                     <!-- Cambiado de Products.descripcion a product.Description -->
                                 </td>
                                 <td class="text-sm text-gray-900  px-6 py-4 ">
@@ -92,6 +96,13 @@
                 <label for="Descripcion">Descripcion</label>
                 <input v-model="Desc" id="Descripcion" type="text" class="mt-3 block w-full p-2 border border-gray-500">
 
+                <label for="Categoria">Categoría</label>
+                <select v-model="categoria" id="Categoria" class="mt-3 block w-full p-2 border border-gray-500">
+                    <option value="" disabled selected>Selecciona una categoría</option> <!-- Opción predeterminada -->
+                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.Name }}
+                    </option>
+                </select>
+
             </div>
             <div class="flex justify-end px-6 py-4 space-x-3">
                 <button @click="Cancelar()"
@@ -119,22 +130,33 @@ export default {
     data() {
         return {
             products: [],
+            categories: [],
             image: null,
             isOpen: false,
             isEditing: false,
         };
     },
     mounted() {
+        // Obtener los productos
         axios.get('http://localhost/public/api/indexProducts')
             .then(response => {
                 this.products = response.data;
-                console.log(response.data)
+                console.log(response.data);
             })
             .catch(error => {
                 console.error('Error al obtener los productos:', error);
             });
-    },
 
+        // Obtener las categorías
+        axios.get('http://localhost/public/api/indexCategory')
+            .then(response => {
+                this.categories = response.data;
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('Error al obtener las categorías:', error);
+            });
+    },
     methods: {
         openModal() {
             this.isOpen = true;
@@ -150,14 +172,14 @@ export default {
         // Método para enviar los datos del producto al API para guardarlos
         AddProduct() {
             // Verificar si los campos no están vacíos
-            if (this.product && this.price && this.Desc && this.image) {
+            if (this.product && this.price && this.Desc && this.image && this.categoria) {
                 // Crear un objeto FormData para enviar los datos del producto, incluida la imagen
                 const formData = new FormData();
                 formData.append('Name', this.product);
                 formData.append('Description', this.Desc);
                 formData.append('Price', this.price);
                 formData.append('Image', this.image); // Aquí sigue enviando el archivo completo
-                formData.append('IdcategoriesFK', '1'); // Id de la categoría (puedes cambiarlo según tus necesidades)
+                formData.append('IdcategoriesFK', this.categoria); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
                 // Realizar la solicitud POST para guardar el producto
                 axios.post('http://localhost/public/api/storeProducts', formData, {
@@ -236,6 +258,7 @@ export default {
             this.price = "";
             this.Desc = "";
             this.image = null; // Limpiar la imagen seleccionada
+            this.categoria = "";
         },
     },
 };

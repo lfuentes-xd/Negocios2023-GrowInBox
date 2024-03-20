@@ -39,28 +39,28 @@
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-    <div v-for="(producto, index) in productosFiltrados" :key="index" class="grid">
+    <div v-for="(producto, index) in products" :key="index" class="grid">
       <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
 
-        <div
+        <!-- <div
           class="relative mx-4 -mt-6 h-60 sm:h-72 md:h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-          <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image"
+          <img :src="require({producto.Image})" alt="Product Image"
             title="Imagen del producto" class="w-full h-full object-cover object-center">
-        </div>
+        </div> -->
 
         <div class="p-6 realtive">
 
           <h2
             class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-            {{ producto.nombre }}
+            {{ producto.Name }}
           </h2>
           <h1
             class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-            ${{ producto.precio }}
+            ${{ producto.Price }}
           </h1>
           <div class="max-lines-2 overflow-ellipsis overflow-hidden">
             <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-              {{ producto.descripcion }}
+              {{ producto.Description }}
             </p>
           </div>
 
@@ -81,10 +81,12 @@
     </div>
   </div>
 </template>
-    
+
 <script>
-import productosData from '../../products.json'
+// import productosData from '../../products.json'
 import navbar from "../components/navbar.vue"
+import axios from 'axios';
+
 
 export default {
   name: 'CatalogoProductos',
@@ -93,10 +95,22 @@ export default {
   },
   data() {
     return {
-      productos: productosData.productos,
+      products: [],
       buscar: '',
       filtro: ''
     };
+  },
+
+  mounted() {
+    axios.get('http://localhost/public/api/indexProducts')
+      .then(response => {
+        this.products = response.data;
+        console.log(response.data)
+        console.log("que tine:: "+this.products)
+      })
+      .catch(error => {
+        console.error('Error al obtener los productos:', error);
+      });
   },
   computed: {
     productosFiltrados() {
@@ -135,7 +149,7 @@ export default {
   }
 };
 </script>
-    
+
 <style scoped>
 /* Estilo del grid */
 .grid {
@@ -147,9 +161,6 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
   max-height: 10rem;
-  /* Set the max height based on your font size and line height */
+
 }
 </style>
-    
-    
-      
