@@ -36,35 +36,38 @@
                         </thead>
                         <tbody class="">
                             <tr class="bg-white" v-for="(product, index) in products" :key="index">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                <td class="text-center px-6 py-4 text-sm text-gray-900">
                                     {{ product.id }}
                                 </td>
-                                <td class="text-sm text-gray-900 px-6 py-4 ">
+                                <td class="text-center text-sm text-gray-900 px-6 py-4">
                                     {{ product.Name }}
                                 </td>
-                                <td class="text-sm text-gray-900 px-6 py-4">
+                                <td class="text-center text-sm text-gray-900 px-6 py-4">
                                     {{ product.Image }}
                                 </td>
-                                <td class="text-sm text-gray-900 px-6 py-4">
+                                <td class="text-center text-sm text-gray-900 px-6 py-4">
                                     {{ product.Price }}
                                 </td>
-                                <td class="text-sm text-gray-900 px-6 py-4 ">
+                                <td class="text-sm text-gray-900 px-6 py-4">
                                     {{ product.Description }}
                                 </td>
-                                <td class="text-sm text-gray-900 px-6 py-4 ">
+                                <td class="text-center text-sm text-gray-900 px-6 py-4">
                                     {{ getCategoryName(product.IdcategoriesFK) }}
                                 </td>
+
                                 <td class="text-sm text-gray-900  px-6 py-4 ">
-                                    <button
-                                        class="middle none center rounded-lg bg-yellow-500 hover:bg-yellow-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white "
-                                        @click="EditProduct(product)">
-                                        Modificar
-                                    </button>
-                                    <button
-                                        class="mx-2 middle none center rounded-lg bg-red-500 hover:bg-red-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white"
-                                        @click="DeleteProduct(product.id)">
-                                        Eliminar
-                                    </button>
+                                    <div class="flex justify-center items-center">
+                                        <button
+                                            class="middle none center rounded-lg bg-yellow-500 hover:bg-yellow-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white "
+                                            @click="EditProduct(product)">
+                                            Modificar
+                                        </button>
+                                        <button
+                                            class="mx-2 middle none center rounded-lg bg-red-500 hover:bg-red-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white"
+                                            @click="DeleteProduct(product.id)">
+                                            Eliminar
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
