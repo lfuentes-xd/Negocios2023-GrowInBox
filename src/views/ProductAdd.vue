@@ -214,82 +214,67 @@ export default {
                     console.error('Error al obtener los productos:', error);
                 });
         },
-        DeleteProduct(id) {
-            // Comprobar si Products está definido
-            if (!this.products) {
-                console.log('Products es undefined!');
-                return;
-            }
-
-            // Buscar en el arreglo
-            const index = this.products.findIndex(product => product.id === id);
-
-            // Si se encontró el producto, mostrar mensaje
-            if (index !== -1) {
-                const confirmacion = window.confirm("¿Seguro deseas eliminar este producto?");
-
-                if (confirmacion) {
-                    // Si el usuario confirma, eliminar el producto del arreglo 
-                    this.products.splice(index, 1);
-
-                    // Luego, hacer una petición DELETE a la API
-                    axios.post('http://localhost/public/api/destroyProducts/{id}')
-                        .then(response => {
-                            console.log(response);
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-                }
+        DeleteProduct(productId) {
+            if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
+                axios.post(`http://localhost/public/api/destroyProducts/${productId}`)
+                    .then(response => {
+                        console.log(response.data);
+                        // Recargar la lista de productos después de eliminar uno
+                        this.loadProducts();
+                    })
+                    .catch(error => {
+                        console.error('Error al eliminar el producto:', error);
+                        alert('Ha ocurrido un error al eliminar el producto. Por favor, inténtalo de nuevo.');
+                    });
             }
         },
         EditProduct(product) {
-            this.product = product.nombre;
-            this.price = product.precio;
-            this.description = product.descripcion;
-            this.currentProductId = product.id; // Guarda el ID del producto que se está editando
+            this.product = product.Name;
+            this.price = product.Price;
+            this.description = product.Description;
+            this.category = product.IdcategoriesFK; // Asegúrate de que el nombre de la propiedad coincida
+            this.currentProductId = product.id;
             this.isOpen = true;
             this.isEditing = true;
         },
 
-
         UpdateProduct() {
-            // Comprueba si los valores son null o están vacíos
-            if (!this.product || !this.price || !this.description) {
-                console.log('Los campos del producto no pueden estar vacíos');
-                return;
-            }
+            if (this.product && this.price && this.description && this.category) {
+                const formData = new FormData();
+                formData.append('Name', this.product);
+                formData.append('Description', this.description);
+                formData.append('Price', this.price);
+                formData.append('IdcategoriesFK', this.category);
 
-            let productToUpdate = this.products.find(product => product.id === this.currentProductId);
-            if (productToUpdate) {
-                productToUpdate.Name = this.product;
-                productToUpdate.Price = this.price;
-                productToUpdate.Description = this.desccription;
+                // Si hay una imagen seleccionada, agregala al FormData
+                if (this.image) {
+                    formData.append('Image', this.image);
+                } else {
+                    // Si no hay una nueva imagen seleccionada, reutiliza la imagen existente
+                    // Puedes almacenar la URL de la imagen actual en una variable en tu componente y agregarla al FormData
+                    formData.append('CurrentImage', this.currentImage); // Asegúrate de tener esta variable en tu componente
+                }
 
-                // Crear un objeto con los datos del producto
-                const productData = {
-                    Name: this.product,
-                    Price: this.price,
-                    Description: this.description
-                };
-                console.log(productData)
-                // Luego, hacer una petición PUT a la API para actualizar el producto
-                axios.put(`http://localhost/public/api/UpdateProduct/${this.currentProductId}/update`, productData)
+                axios.post(`http://localhost/public/api/update/${this.currentProductId}/updateProduct`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
                     .then(response => {
-                        console.log(response);
+                        console.log(response.data);
+                        this.limpiar();
+                        this.isOpen = false;
+                        this.isEditing = false;
+                        this.loadProducts();
                     })
                     .catch(error => {
-                        console.log(error);
+                        console.error('Error al actualizar el producto:', error);
+                        alert('Ha ocurrido un error al actualizar el producto. Por favor, inténtalo de nuevo.');
                     });
+            } else {
+                alert('Todos los campos son requeridos');
             }
-            this.isOpen = false;
-            this.isEditing = false;
-            this.limpiar()
         },
-
-
-
-
         Cancelar() {
             this.limpiar();
             this.isOpen = false;
@@ -300,9 +285,7 @@ export default {
             this.description = "";
             this.image = null; // Limpiar la imagen seleccionada
             this.category = "";
-        }
-
-        ,
+        },
     },
 };
 </script>
