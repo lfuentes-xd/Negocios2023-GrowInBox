@@ -54,7 +54,7 @@
                                 <td class="text-center text-sm text-gray-900 px-6 py-4">
                                     {{ getCategoryName(product.IdcategoriesFK) }}
                                 </td>
-                                <td class="text-sm text-gray-900 xxxxxx px-6 py-4 ">
+                                <td class="text-sm text-gray-900  px-6 py-4 ">
                                     <div class="flex justify-center items-center">
                                         <button
                                             class="middle none center rounded-lg bg-yellow-500 hover:bg-yellow-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white "
@@ -90,9 +90,8 @@
                 <label for="Imagen">Imagen</label>
                 <input id="Imagen" type="file" class="mt-3 block w-full p-2 border border-gray-500"
                     @change="onFileChange">
-                <label for="Precio">Precio</label>
+                    <label for="Precio">Precio</label>
                 <input v-model="price" id="Precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
-                <label for="Descripcion">Descripcion</label>
                 <input v-model="description" id="Descripcion" type="text"
                     class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Categoria">Categoría</label>
@@ -134,7 +133,8 @@ export default {
         };
     },
     mounted() {
-        axios.get('http://localhost/public/api/indexProducts')
+        // Obtener los productos
+        axios.get('http://127.0.0.1:8000/api/indexProducts')
             .then(response => {
                 this.products = response.data;
                 console.log(response.data);
@@ -142,7 +142,9 @@ export default {
             .catch(error => {
                 console.error('Error al obtener los productos:', error);
             });
-        axios.get('http://localhost/public/api/indexCategory')
+
+        // Obtener las categorías
+        axios.get('http://127.0.0.1:8000/api/indexCategory')
             .then(response => {
                 this.categories = response.data;
                 console.log(response.data);
@@ -159,30 +161,38 @@ export default {
         openModal() {
             this.isOpen = true;
         },
+        // Método para manejar el cambio en la selección de la imagen
         onFileChange(e) {
-            const file = e.target.files[0];
-            this.image = file;
+            const file = e.target.files[0]; // Obtener el archivo seleccionado
+            this.image = file; // Guardar el archivo en una variable de datos (por ejemplo, 'image')
             const fileName = file.name;
             console.log("Nombre de la imagen:", fileName);
         },
+        // Método para enviar los datos del producto al API para guardarlos
         AddProduct() {
+            // Verificar si los campos no están vacíos
             if (this.product && this.price && this.description && this.image && this.category) {
+                // Crear un objeto FormData para enviar los datos del producto, incluida la imagen
                 const formData = new FormData();
                 formData.append('Name', this.product);
                 formData.append('Description', this.description);
                 formData.append('Price', this.price);
-                formData.append('Image', this.image);
-                formData.append('IdcategoriesFK', this.category);
+                formData.append('Image', this.image); // Aquí sigue enviando el archivo completo
+                formData.append('IdcategoriesFK', this.category); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
-                axios.post('http://localhost/public/api/storeProducts', formData, {
+                // Realizar la solicitud POST para guardar el producto
+                axios.post('http://127.0.0.1:8000/api/storeProducts', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido como 'multipart/form-data' para enviar archivos
                     }
                 })
                     .then(response => {
+                        // Manejar la respuesta
                         console.log(response.data);
+                        // Cerrar la ventana modal y limpiar los campos del formulario
                         this.limpiar();
                         this.isOpen = false;
+                        // Recargar los productos después de agregar uno nuevo
                         this.loadProducts();
                     })
                     .catch(error => {
@@ -194,7 +204,7 @@ export default {
             }
         },
         loadProducts() {
-            axios.get('http://localhost/public/api/indexProducts')
+            axios.get('http://127.0.0.1:8000/api/indexProducts')
                 .then(response => {
                     this.products = response.data;
                     console.log(response.data)
@@ -204,21 +214,36 @@ export default {
                 });
         },
         DeleteProduct(id) {
+            // Comprobar si Products está definido
+            if (!this.products) {
+                console.log('Products es undefined!');
+                return;
+            }
 
-            // Buscar en el arreglo+
-            const index = this.Products.findIndex(Products => Products.id === id);
+            // Buscar en el arreglo
+            const index = this.products.findIndex(product => product.id === id);
 
-            // Si se encontró el producto, mostrar un mensaje
+            // Si se encontró el producto, mostrar mensaje
             if (index !== -1) {
                 const confirmacion = window.confirm("¿Seguro deseas eliminar este producto?");
 
                 if (confirmacion) {
                     // Si el usuario confirma, eliminar el producto del arreglo 
-                    this.Products.splice(index, 1);
+                    this.products.splice(index, 1);
+
+                    // Luego, hacer una petición DELETE a la API
+                    axios.delete('http://127.0.0.1:8000/api/Product/${id}')
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 }
             }
-        },
+        }
 
+        ,
         EditProduct(product) {
             this.product = product.nombre;
             this.price = product.precio;
@@ -227,17 +252,45 @@ export default {
             this.isOpen = true;
             this.isEditing = true;
         },
+
+
         UpdateProduct() {
-            let productToUpdate = this.Products.find(product => product.id === this.currentProductId);
+            // Comprueba si los valores son null o están vacíos
+            if (!this.product || !this.price || !this.Desc) {
+                console.log('Los campos del producto no pueden estar vacíos');
+                return;
+            }
+
+            let productToUpdate = this.products.find(product => product.id === this.currentProductId);
             if (productToUpdate) {
-                productToUpdate.nombre = this.product;
-                productToUpdate.precio = this.price;
-                productToUpdate.descripcion = this.Desc;
+                productToUpdate.Name = this.product;
+                productToUpdate.Price = this.price;
+                productToUpdate.Description = this.Desc;
+
+                // Crear un objeto con los datos del producto
+                const productData = {
+                    Name: this.product,
+                    Price: this.price,
+                    Description: this.Desc
+                };
+
+                // Luego, hacer una petición PUT a la API para actualizar el producto
+                axios.put(`http://127.0.0.1:8000/api/UpdateProduct/${this.currentProductId}/update`, productData)
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             }
             this.isOpen = false;
             this.isEditing = false;
             this.limpiar()
         },
+
+
+
+
         Cancelar() {
             this.limpiar();
             this.isOpen = false;
@@ -246,9 +299,11 @@ export default {
             this.product = "";
             this.price = "";
             this.Desc = "";
-            this.image = "";
+            this.image = null; // Limpiar la imagen seleccionada
             this.category = "";
-        },
+        }
+
+        ,
     },
 };
 </script>
