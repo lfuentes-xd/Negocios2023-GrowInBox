@@ -90,7 +90,7 @@
                 <label for="Imagen">Imagen</label>
                 <input id="Imagen" type="file" class="mt-3 block w-full p-2 border border-gray-500"
                     @change="onFileChange">
-                    <label for="Precio">Precio</label>
+                <label for="Precio">Precio</label>
                 <input v-model="price" id="Precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Categoria">Descripcion</label>
                 <input v-model="description" id="Descripcion" type="text"
@@ -233,7 +233,7 @@ export default {
                     this.products.splice(index, 1);
 
                     // Luego, hacer una petición DELETE a la API
-                    axios.delete('http://localhost/public/api/Product/${id}')
+                    axios.post('http://localhost/public/api/destroyProducts/{id}')
                         .then(response => {
                             console.log(response);
                         })
@@ -242,13 +242,11 @@ export default {
                         });
                 }
             }
-        }
-
-        ,
+        },
         EditProduct(product) {
             this.product = product.nombre;
             this.price = product.precio;
-            this.Desc = product.descripcion;
+            this.description = product.descripcion;
             this.currentProductId = product.id; // Guarda el ID del producto que se está editando
             this.isOpen = true;
             this.isEditing = true;
@@ -274,7 +272,7 @@ export default {
                     Price: this.price,
                     Description: this.description
                 };
-
+                console.log(productData)
                 // Luego, hacer una petición PUT a la API para actualizar el producto
                 axios.put(`http://localhost/public/api/UpdateProduct/${this.currentProductId}/update`, productData)
                     .then(response => {
