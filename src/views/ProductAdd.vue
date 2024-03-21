@@ -134,7 +134,7 @@ export default {
     },
     mounted() {
         // Obtener los productos
-        axios.get('http://127.0.0.1:8000/api/indexProducts')
+        axios.get('http://localhost/public/api/indexProducts')
             .then(response => {
                 this.products = response.data;
                 console.log(response.data);
@@ -144,7 +144,7 @@ export default {
             });
 
         // Obtener las categorías
-        axios.get('http://127.0.0.1:8000/api/indexCategory')
+        axios.get('http://localhost/public/api/indexCategory')
             .then(response => {
                 this.categories = response.data;
                 console.log(response.data);
@@ -181,7 +181,7 @@ export default {
                 formData.append('IdcategoriesFK', this.category); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
                 // Realizar la solicitud POST para guardar el producto
-                axios.post('http://127.0.0.1:8000/api/storeProducts', formData, {
+                axios.post('http://localhost/public/api/storeProducts', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido como 'multipart/form-data' para enviar archivos
                     }
@@ -204,7 +204,7 @@ export default {
             }
         },
         loadProducts() {
-            axios.get('http://127.0.0.1:8000/api/indexProducts')
+            axios.get('http://localhost/public/api/indexProducts')
                 .then(response => {
                     this.products = response.data;
                     console.log(response.data)
@@ -232,7 +232,7 @@ export default {
                     this.products.splice(index, 1);
 
                     // Luego, hacer una petición DELETE a la API
-                    axios.delete('http://127.0.0.1:8000/api/Product/${id}')
+                    axios.delete('http://localhost/public/api/Product/${id}')
                         .then(response => {
                             console.log(response);
                         })
@@ -256,7 +256,7 @@ export default {
 
         UpdateProduct() {
             // Comprueba si los valores son null o están vacíos
-            if (!this.product || !this.price || !this.Desc) {
+            if (!this.product || !this.price || !this.description) {
                 console.log('Los campos del producto no pueden estar vacíos');
                 return;
             }
@@ -265,17 +265,17 @@ export default {
             if (productToUpdate) {
                 productToUpdate.Name = this.product;
                 productToUpdate.Price = this.price;
-                productToUpdate.Description = this.Desc;
+                productToUpdate.Description = this.desccription;
 
                 // Crear un objeto con los datos del producto
                 const productData = {
                     Name: this.product,
                     Price: this.price,
-                    Description: this.Desc
+                    Description: this.description
                 };
 
                 // Luego, hacer una petición PUT a la API para actualizar el producto
-                axios.put(`http://127.0.0.1:8000/api/UpdateProduct/${this.currentProductId}/update`, productData)
+                axios.put(`http://localhost/public/api/UpdateProduct/${this.currentProductId}/update`, productData)
                     .then(response => {
                         console.log(response);
                     })
@@ -298,7 +298,7 @@ export default {
         limpiar() {
             this.product = "";
             this.price = "";
-            this.Desc = "";
+            this.description = "";
             this.image = null; // Limpiar la imagen seleccionada
             this.category = "";
         }
