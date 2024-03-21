@@ -92,6 +92,7 @@
                     @change="onFileChange">
                     <label for="Precio">Precio</label>
                 <input v-model="price" id="Precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
+                <label for="Categoria">Descripcion</label>
                 <input v-model="description" id="Descripcion" type="text"
                     class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Categoria">Categoría</label>
