@@ -54,8 +54,7 @@
                                 <td class="text-center text-sm text-gray-900 px-6 py-4">
                                     {{ getCategoryName(product.IdcategoriesFK) }}
                                 </td>
-
-                                <td class="text-sm text-gray-900  px-6 py-4 ">
+                                <td class="text-sm text-gray-900 xxxxxx px-6 py-4 ">
                                     <div class="flex justify-center items-center">
                                         <button
                                             class="middle none center rounded-lg bg-yellow-500 hover:bg-yellow-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white "
