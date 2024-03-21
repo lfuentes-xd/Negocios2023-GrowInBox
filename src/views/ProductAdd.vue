@@ -40,7 +40,7 @@
                                     {{ product.id }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
-                                    {{ product.Name }} 
+                                    {{ product.Name }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4">
                                     {{ product.Image }}
@@ -52,7 +52,7 @@
                                     {{ product.Description }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
-                                    {{ product.IdcategoriesFK }}
+                                    {{ getCategoryName(product.IdcategoriesFK) }}
                                 </td>
                                 <td class="text-sm text-gray-900  px-6 py-4 ">
                                     <button
@@ -82,19 +82,19 @@
                 <h3 class="text-2xl font-semibold text-gray-800">Agregar producto</h3>
             </div>
             <div class="px-6 py-4 text-lg text-gray-600">
-                
+
                 <label for="Producto">Nombre del Producto</label>
                 <input v-model="product" id="Producto" type="text" class="mt-3 block w-full p-2 border border-gray-500">
-                <label for="image">Imagen</label>
-                <input id="image" type="file" class="mt-3 block w-full p-2 border border-gray-500"
+                <label for="Imagen">Imagen</label>
+                <input id="Imagen" type="file" class="mt-3 block w-full p-2 border border-gray-500"
                     @change="onFileChange">
-                <label for="precio">Precio</label>
-                <input v-model="price" id="precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
+                <label for="Precio">Precio</label>
+                <input v-model="price" id="Precio" type="number" class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Descripcion">Descripcion</label>
-                <input v-model="Desc" id="Descripcion" type="text" class="mt-3 block w-full p-2 border border-gray-500">
+                <input v-model="description" id="Descripcion" type="text"
+                    class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="Categoria">Categoría</label>
-                <select v-model="categoria" id="Categoria" class="mt-3 block w-full p-2 border border-gray-500">
-                    <option value="" disabled selected>Selecciona una categoría</option> <!-- Opción predeterminada -->
+                <select v-model="category" id="categoria" class="mt-3 block w-full p-2 border border-gray-500">
                     <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.Name }}
                     </option>
                 </select>
@@ -132,7 +132,6 @@ export default {
         };
     },
     mounted() {
-        // Obtener los productos
         axios.get('http://localhost/public/api/indexProducts')
             .then(response => {
                 this.products = response.data;
@@ -141,8 +140,6 @@ export default {
             .catch(error => {
                 console.error('Error al obtener los productos:', error);
             });
-
-        // Obtener las categorías
         axios.get('http://localhost/public/api/indexCategory')
             .then(response => {
                 this.categories = response.data;
@@ -153,42 +150,37 @@ export default {
             });
     },
     methods: {
+        getCategoryName(categoryId) {
+            const category = this.categories.find(cat => cat.id === categoryId);
+            return category ? category.Name : 'Sin categoría';
+        },
         openModal() {
             this.isOpen = true;
         },
-        // Método para manejar el cambio en la selección de la imagen
         onFileChange(e) {
-            const file = e.target.files[0]; // Obtener el archivo seleccionado
-            this.image = file; // Guardar el archivo en una variable de datos (por ejemplo, 'image')
+            const file = e.target.files[0];
+            this.image = file;
             const fileName = file.name;
             console.log("Nombre de la imagen:", fileName);
         },
-
-        // Método para enviar los datos del producto al API para guardarlos
         AddProduct() {
-            // Verificar si los campos no están vacíos
-            if (this.product && this.price && this.Desc && this.image && this.categoria) {
-                // Crear un objeto FormData para enviar los datos del producto, incluida la imagen
+            if (this.product && this.price && this.description && this.image && this.category) {
                 const formData = new FormData();
                 formData.append('Name', this.product);
-                formData.append('Description', this.Desc);
+                formData.append('Description', this.description);
                 formData.append('Price', this.price);
-                formData.append('Image', this.image); // Aquí sigue enviando el archivo completo
-                formData.append('IdcategoriesFK', this.categoria); // Id de la categoría (puedes cambiarlo según tus necesidades)
+                formData.append('Image', this.image);
+                formData.append('IdcategoriesFK', this.category);
 
-                // Realizar la solicitud POST para guardar el producto
                 axios.post('http://localhost/public/api/storeProducts', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido como 'multipart/form-data' para enviar archivos
+                        'Content-Type': 'multipart/form-data'
                     }
                 })
                     .then(response => {
-                        // Manejar la respuesta
                         console.log(response.data);
-                        // Cerrar la ventana modal y limpiar los campos del formulario
                         this.limpiar();
                         this.isOpen = false;
-                        // Recargar los productos después de agregar uno nuevo
                         this.loadProducts();
                     })
                     .catch(error => {
@@ -211,7 +203,7 @@ export default {
         },
         DeleteProduct(id) {
 
-            // Buscar en el arreglo
+            // Buscar en el arreglo+
             const index = this.Products.findIndex(Products => Products.id === id);
 
             // Si se encontró el producto, mostrar un mensaje
@@ -252,8 +244,8 @@ export default {
             this.product = "";
             this.price = "";
             this.Desc = "";
-            this.image = null; // Limpiar la imagen seleccionada
-            this.categoria = "";
+            this.image = "";
+            this.category = "";
         },
     },
 };
