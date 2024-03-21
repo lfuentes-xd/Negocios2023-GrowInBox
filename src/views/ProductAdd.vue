@@ -40,7 +40,7 @@
                                     {{ product.id }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4 ">
-                                    {{ product.Name }} 
+                                    {{ product.Name }}
                                 </td>
                                 <td class="text-sm text-gray-900 px-6 py-4">
                                     {{ product.Image }}
@@ -82,7 +82,7 @@
                 <h3 class="text-2xl font-semibold text-gray-800">Agregar producto</h3>
             </div>
             <div class="px-6 py-4 text-lg text-gray-600">
-                
+
                 <label for="Producto">Nombre del Producto</label>
                 <input v-model="product" id="Producto" type="text" class="mt-3 block w-full p-2 border border-gray-500">
                 <label for="image">Imagen</label>
@@ -133,7 +133,7 @@ export default {
     },
     mounted() {
         // Obtener los productos
-        axios.get('http://localhost/public/api/indexProducts')
+        axios.get('http://127.0.0.1:8000/api/indexProducts')
             .then(response => {
                 this.products = response.data;
                 console.log(response.data);
@@ -143,7 +143,7 @@ export default {
             });
 
         // Obtener las categorías
-        axios.get('http://localhost/public/api/indexCategory')
+        axios.get('http://127.0.0.1:8000/api/indexCategory')
             .then(response => {
                 this.categories = response.data;
                 console.log(response.data);
@@ -177,7 +177,7 @@ export default {
                 formData.append('IdcategoriesFK', this.categoria); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
                 // Realizar la solicitud POST para guardar el producto
-                axios.post('http://localhost/public/api/storeProducts', formData, {
+                axios.post('http://127.0.0.1:8000/api/storeProducts', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido como 'multipart/form-data' para enviar archivos
                     }
@@ -200,7 +200,7 @@ export default {
             }
         },
         loadProducts() {
-            axios.get('http://localhost/public/api/indexProducts')
+            axios.get('http://127.0.0.1:8000/api/indexProducts')
                 .then(response => {
                     this.products = response.data;
                     console.log(response.data)
@@ -210,21 +210,36 @@ export default {
                 });
         },
         DeleteProduct(id) {
+            // Comprobar si Products está definido
+            if (!this.products) {
+                console.log('Products es undefined!');
+                return;
+            }
 
             // Buscar en el arreglo
-            const index = this.Products.findIndex(Products => Products.id === id);
+            const index = this.products.findIndex(product => product.id === id);
 
-            // Si se encontró el producto, mostrar un mensaje
+            // Si se encontró el producto, mostrar mensaje
             if (index !== -1) {
                 const confirmacion = window.confirm("¿Seguro deseas eliminar este producto?");
 
                 if (confirmacion) {
                     // Si el usuario confirma, eliminar el producto del arreglo 
-                    this.Products.splice(index, 1);
+                    this.products.splice(index, 1);
+
+                    // Luego, hacer una petición DELETE a la API
+                    axios.delete('http://127.0.0.1:8000/api/Product/${id}')
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 }
             }
-        },
+        }
 
+        ,
         EditProduct(product) {
             this.product = product.nombre;
             this.price = product.precio;
@@ -233,17 +248,45 @@ export default {
             this.isOpen = true;
             this.isEditing = true;
         },
+
+
         UpdateProduct() {
-            let productToUpdate = this.Products.find(product => product.id === this.currentProductId);
-            if (productToUpdate) {
-                productToUpdate.nombre = this.product;
-                productToUpdate.precio = this.price;
-                productToUpdate.descripcion = this.Desc;
-            }
-            this.isOpen = false;
-            this.isEditing = false;
-            this.limpiar()
-        },
+    // Comprueba si los valores son null o están vacíos
+    if (!this.product || !this.price || !this.Desc) {
+        console.log('Los campos del producto no pueden estar vacíos');
+        return;
+    }
+
+    let productToUpdate = this.products.find(product => product.id === this.currentProductId);
+    if (productToUpdate) {
+        productToUpdate.Name = this.product;
+        productToUpdate.Price = this.price;
+        productToUpdate.Description = this.Desc;
+
+        // Crear un objeto con los datos del producto
+        const productData = {
+            Name: this.product,
+            Price: this.price,
+            Description: this.Desc
+        };
+ 
+        // Luego, hacer una petición PUT a la API para actualizar el producto
+        axios.put(`http://127.0.0.1:8000/api/UpdateProduct/${this.currentProductId}/update`, productData)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+    this.isOpen = false;
+    this.isEditing = false;
+    this.limpiar()
+},
+
+
+
+
         Cancelar() {
             this.limpiar();
             this.isOpen = false;
@@ -254,7 +297,9 @@ export default {
             this.Desc = "";
             this.image = null; // Limpiar la imagen seleccionada
             this.categoria = "";
-        },
+        }
+
+        ,
     },
 };
 </script>

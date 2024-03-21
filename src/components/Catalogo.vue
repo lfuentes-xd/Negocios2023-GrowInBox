@@ -102,7 +102,7 @@ export default {
   },
 
   mounted() {
-    axios.get('http://localhost/public/api/indexProducts')
+    axios.get('http://127.0.0.1:8000/api/indexProducts')
       .then(response => {
         this.products = response.data;
         console.log(response.data)
