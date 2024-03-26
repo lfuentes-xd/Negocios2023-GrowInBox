@@ -17,13 +17,14 @@
 
     </div>
 
-    <div>
-      <div class="max-w-screen-md mx-auto">
-        <div class="mb-4 sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+    <div class="max-w-screen-md mx-auto">
+      <div class="grid grid-cols-1 gap-10">
+        <div v-for="producto in productoAlt" :key="producto.id"
+          class="mb-4 sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
           <div
             class="w-full sm:w-2/5 sm:shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
-            <img src="@/assets/GIB-Card1.jpg" alt="imagen de espinacas" title="imagen del producto espinacas"
-              class="w-full h-48 object-cover sm:h-full" />
+            <img :src="'http://localhost/storage/app/' + producto.Image" :alt="'imagen de ' + producto.Name"
+              :title="'imagen del producto ' + producto.Name" class="w-full h-48 object-cover sm:h-full" />
           </div>
           <div class="p-6">
             <h6
@@ -32,50 +33,16 @@
             </h6>
             <h2
               class="mb-2 block font-sans text-xl sm:text-2xl font-semibold sm:font-bold leading-snug tracking-normal text-blue-gray-900 antialiased">
-              Kit de Crecimiento
+              {{ producto.Name }}
             </h2>
             <p class="mb-4 block font-sans text-sm sm:text-base font-normal leading-relaxed text-gray-700 antialiased">
-              No te canses ni te ensucies tratando de hacer crecer una planta frutal, mejor compra este kit donde solo
-              tendrás que darle agua y sol a tu planta para que pronto gustes de los frutos que esta da.
+              {{ producto.Description }}
             </p>
-            <a class="inline-block" href="#" title="Enlace para más información">
-
-              <router-link :to="{ name: 'Producto', params: { id: 1 } }"
-                class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
-                title="Producto">
-                Ver producto
-              </router-link>
-            </a>
-          </div>
-        </div>
-
-        <div class="w-full sm:flex sm:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-          <div
-            class="w-full sm:w-2/5 sm:shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
-            <img src="@/assets/GIB-Card2.jpg" alt="imagen de pala" title="producto pala"
-              class="w-full h-48 object-cover sm:h-full" />
-          </div>
-          <div class="p-6">
-            <h6
-              class="mb-2 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-pink-500 antialiased">
-              Destacado
-            </h6>
-            <h4
-              class="mb-2 block font-sans text-xl sm:text-2xl font-semibold sm:font-bold leading-snug tracking-normal text-blue-gray-900 antialiased">
-              Logra más con nuestras herramientas
-            </h4>
-            <p class="mb-4 block font-sans text-sm sm:text-base font-normal leading-relaxed text-gray-700 antialiased">
-              Con estas herramientas olvídate de que te salgan ampollas en tus manos, pues estas son ergonómicas, de buena
-              calidad y duraderas.
-            </p>
-            <a class="inline-block" href="#" title="Enlace para más información herramientas">
-
-              <router-link :to="{ name: 'Producto', params: { id: 2 } }"
-                class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
-                title="Producto">
-                Ver producto
-              </router-link>
-            </a>
+            <router-link :to="{ name: 'Producto', params: { id: producto.id } }"
+              class="select-none rounded-lg bg-black py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40"
+              title="Producto">
+              Ver producto
+            </router-link>
           </div>
         </div>
       </div>
@@ -86,7 +53,7 @@
 
 <script>
 import { ref } from 'vue';
-
+import axios from 'axios';
 import navbar from "../components/navbar.vue"
 
 export default {
@@ -95,15 +62,37 @@ export default {
   },
   data() {
     return {
-      x: ref(0)
+      x: ref(0),
+      productos: [],
+      productoAlt: []
     };
   },
   methods: {
     onMousemoveA(e) {
       this.x = e.clientX;
     }
+  },
+  created() {
+    // Obtener todos los productos disponibles
+    axios.get('http://localhost/public/api/indexProducts')
+      .then(response => {
+        const productos = response.data;
+
+        // Obtener dos productos aleatorios
+        const randomIndexes = [];
+        while (randomIndexes.length < 2) {
+          const randomIndex = Math.floor(Math.random() * productos.length);
+          if (!randomIndexes.includes(randomIndex)) {
+            randomIndexes.push(randomIndex);
+          }
+        }
+        this.productoAlt = randomIndexes.map(index => productos[index]);
+      })
+      .catch(error => {
+        console.error('Error al obtener los productos:', error);
+      });
   }
-}
+};
 </script>
 
 <style scoped>
