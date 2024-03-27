@@ -36,16 +36,17 @@
         <option value="menor">Precio menor a mayor </option>
       </select>
     </div>
+
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
     <div v-for="(producto, index) in filteredProducts" :key="index" class="grid">
       <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mt-10">
-  
+
         <div
           class="relative mx-4 -mt-6 h-60 sm:h-72 md:h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-          <img :src="'http://localhost/storage/app/'+producto.Image" alt="Product Image"
-            title="Imagen del producto" class="w-full h-full object-cover object-center">
+          <img :src="'http://localhost/storage/app/' + producto.Image" alt="Product Image" title="Imagen del producto"
+            class="w-full h-full object-cover object-center">
         </div>
 
         <div class="p-6 realtive">
@@ -80,6 +81,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -97,7 +99,8 @@ export default {
     return {
       products: [],
       buscar: '',
-      filtro: ''
+      filtro: '',
+      categories: []
     };
   },
 
@@ -106,7 +109,6 @@ export default {
       .then(response => {
         this.products = response.data;
         console.log(response.data)
-        console.log("que tine:: " + this.products)
       })
       .catch(error => {
         console.error('Error al obtener los productos:', error);
@@ -133,7 +135,7 @@ export default {
       }
 
       return filtered;
-    }
+    },
   }
 };
 </script>
