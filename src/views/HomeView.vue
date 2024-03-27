@@ -3,17 +3,17 @@
 
   <div class="home">
 
-    <div @mousemove="onMousemoveA" :class="{ 'hiddenBG': x < 5, 'visibleBG': x >= 5 }" style="margin-bottom: 1cm;">
+    <div ref="mouseDiv" @mousemove="onMousemoveA" :class="{ 'hiddenBG': y < 5, 'visibleBG': y >= 5 }" style="margin-bottom: 1cm;">
 
-      <p :class="{ 'hiddenA-text': x < 5, 'hiddenB-text': x >= 5 }">.</p>
-      <h1 :class="{ 'hiddenA-text': x < 5, 'visible-text': x >= 5 }">Revisa los productos mas vendidos</h1>
-      <p :class="{ 'hiddenA-text': x < 5, 'hiddenD-text': x >= 5 }">.</p>
+      <p :class="{ 'hiddenA-text': y < 5, 'hiddenB-text': y >= 5 }">.</p>
+      <h1 :class="{ 'hiddenA-text': y < 5, 'visible-text': y >= 5 }">Revisa los productos mas vendidos</h1>
+      <p :class="{ 'hiddenA-text': y < 5, 'hiddenD-text': y >= 5 }">.</p>
 
       <router-link to="/Catalogo">
-        <button :class="{ 'hiddenD-button': x < 5, 'visible-button': x >= 5 }">Los Quiero</button>
+        <button :class="{ 'hiddenD-button': y < 5, 'visible-button': y >= 5 }">Los Quiero</button>
       </router-link>
 
-      <p :class="{ 'hiddenA-text': x < 5, 'hiddenC-text': x >= 5 }">.</p>
+      <p :class="{ 'hiddenA-text': y < 5, 'hiddenC-text': y >= 5 }">.</p>
 
     </div>
 
@@ -62,14 +62,16 @@ export default {
   },
   data() {
     return {
-      x: ref(0),
+      y: ref(0),
       productos: [],
       productoAlt: []
     };
   },
   methods: {
     onMousemoveA(e) {
-      this.x = e.clientX;
+      const divPosition = this.$refs.mouseDiv.getBoundingClientRect();
+      const yRelativeToDiv = e.clientY - divPosition.top;
+      this.y = yRelativeToDiv;
     }
   },
   created() {
@@ -171,6 +173,7 @@ export default {
   background: transparent;
   font-size: 0px;
   color: transparent;
+  transition: all 3s ease;
 }
 
 
