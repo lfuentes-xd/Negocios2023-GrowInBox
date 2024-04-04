@@ -21,13 +21,13 @@
           <div class="w-full mt-4">
             <input
               class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-              type="email" placeholder="Correo electronico" aria-label="Email Address" />
+              type="email" placeholder="Correo electronico" v-model="FormData.email" aria-label="Email Address" />
           </div>
 
           <div class="w-full mt-4">
             <input
               class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-              type="password" placeholder="Contraseña" aria-label="Password" />
+              type="password" placeholder="Contraseña" v-model="FormData.password" aria-label="Password" />
           </div>
 
 
@@ -40,12 +40,10 @@
               </button>
             </router-link>
 
-            <router-link to="/User">
-              <button router-link to="/User" type="submit" @click="signIn"
-                class="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                Iniciar Sesión
-              </button>
-            </router-link>
+            <button type="submit" @click="signIn"
+              class="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+              Iniciar Sesión
+            </button>
           </div>
         </form>
 
@@ -55,18 +53,33 @@
 </template>
 
 <script>
+import axios from "axios";
 import navbar from "../components/navbar.vue"
 export default {
   name: "LoginComponent",
+  data(){
+    return{
+      FormData:{
+        email: '',
+        password: '',
+    }
+    }
+  },
   components: {
     navbar
   },
   methods: {
     signIn() {
-      alert("sesion iniciada");
+      axios.post('http://localhost/2/BackEnd-NegII/public/api/login', this.FormData)
+      .then(response=>{
+        console.log("done",response.data);
+        localStorage.setItem('token', response.data.token);
+        this.$router.push({ name: "home" });
+      })
+      .catch(errors=>{
+        console.error( errors);
 
-      // Redirige a la página principal (HomeView.vue)
-      this.$router.push({ name: "home" });
+      });
     },
   },
 };
@@ -75,3 +88,6 @@ export default {
 <style scoped>
 /* Puedes agregar estilos específicos del componente aquí */
 </style>
+
+      
+   

@@ -12,7 +12,7 @@
           </router-link>
 
           <span class="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 ">
-            Crear cuenta
+            Crear cuentaa
           </span>
         </div>
 
@@ -28,7 +28,7 @@
           </span>
           <input type="text"
             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Nombre de usuario" />
+            placeholder="Nombre de usuario" v-model="formData.username"/>
         </div>
 
         <!-- Email Address Input -->
@@ -42,7 +42,7 @@
           </span>
           <input type="email"
             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Correo electronico" />
+            placeholder="Correo electronico" v-model="formData.email"/>
         </div>
 
         <!-- Password Input -->
@@ -56,7 +56,7 @@
           </span>
           <input type="password"
             class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Contraseña" />
+            placeholder="Contraseña" v-model="formData.password"/>
         </div>
 
         <!-- Confirm Password Input -->
@@ -70,7 +70,7 @@
           </span>
           <input type="password"
             class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Confirmar contraseña" />
+            placeholder="Confirmar contraseña" v-model="formData.confirmPassword"/>
         </div>
 
         <!-- Sign Up Button -->
@@ -98,26 +98,62 @@
 </template>
   
 <script>
+import axios from 'axios';
 export default {
   name: "SignUp",
   data() {
     return {
       cuentaCreada: false,
+      formData: {
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      }
     };
   },
   methods: {
     crearCuenta() {
 
-      this.cuentaCreada = true;
-
-      // Redirección a la página principal después del éxito
-      if (this.cuentaCreada) {
-        // Muestra una alerta con el mensaje
-        alert("¡La cuenta se ha creado con éxito!");
-
-        this.$router.push("/Login"); // Ajusta la ruta según tu configuración
-      }
+      axios.post('http://localhost/2/BackEnd-NegII/public/api/UserRegister', this.formData)
+        .then(() => {
+          console.log('registered');
+          
+          
+          this.$router.push("/Login"); // Ajusta la ruta según tu configuración
+        })
+        .catch(error => {
+          console.error( error);
+          if (error.response && error.response.status === 422) {
+          // Error de validación del lado del servidor (código 422)
+          const errorMessage = error.response.data.message;
+          if (errorMessage.includes('confirm password field must match password')) {
+            // Si el error es debido a que las contraseñas no coinciden
+            alert('Las contraseñas no coinciden. Por favor, inténtelo de nuevo.');
+          } else {
+            // Otro tipo de error de validación
+            alert('Ha ocurrido un error de validación. Por favor, revise los datos e inténtelo de nuevo.');
+          }
+        } else if (error.response && error.response.status === 500) {
+          // Error interno del servidor
+          const errorMessage = error.response.data.message;
+          if (errorMessage.includes('Integrity constraint violation')) {
+            // Si el error es debido a una violación de restricción de integridad,
+            // es probable que sea porque el correo ya está registrado
+            alert('El correo electrónico ya está registrado. Por favor, utilice otro correo.');
+          } else {
+            // Otro tipo de error interno del servidor
+            alert('Ha ocurrido un error interno del servidor. Por favor, inténtelo de nuevo más tarde.');
+          }
+        } else {
+          // Otro tipo de error (por ejemplo, error de red)
+          alert('Ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.');
+        }
+        });
     },
+  },
+  created(){
+
   },
 };
 </script>
