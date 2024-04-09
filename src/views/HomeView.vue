@@ -64,8 +64,30 @@ export default {
     return {
       y: ref(0),
       productos: [],
-      productoAlt: []
+      productoAlt: [],
+      userData:null,
+      token: localStorage.getItem('token')
+      
     };
+  },
+  mounted(){
+
+    
+    axios.get("http://localhost/2/BackEnd-NegII/public/api/User",{
+      headers:{
+        "Acces-Control-Allow-Origin": "*",
+        "Acces-Control-Allow-Methods": "GET",
+        'Authorization': `Bearer ${this.token}`
+      }
+    })
+    .then(response=>{
+      this.userData= response.data;
+      console.log("datos", response.data);
+      
+    })
+    .catch(error=> {
+      console.log("error al obtener datos", error);
+    });
   },
   methods: {
     onMousemoveA(e) {
@@ -76,7 +98,7 @@ export default {
   },
   created() {
     // Obtener todos los productos disponibles
-    axios.get('http://localhost/public/api/indexProducts')
+    axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts')
       .then(response => {
         const productos = response.data;
 

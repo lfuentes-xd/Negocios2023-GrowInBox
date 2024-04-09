@@ -80,7 +80,7 @@ export default {
         console.log('productId:', productId);
 
         this.currentId = productId;
-        axios.get(`http://localhost/public/api/ShowProduct/${this.currentId}`)
+        axios.get(`http://localhost/2/BackEnd-NegII/public/api/ShowProduct/${this.currentId}`)
             .then(response => {
                 this.producto = response.data;
                 console.log(response.data)

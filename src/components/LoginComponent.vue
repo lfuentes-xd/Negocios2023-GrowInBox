@@ -74,7 +74,9 @@ export default {
       .then(response=>{
         console.log("done",response.data);
         localStorage.setItem('token', response.data.token);
+        alert("inicio satisfactorio");
         this.$router.push({ name: "home" });
+
       })
       .catch(errors=>{
         console.error( errors);

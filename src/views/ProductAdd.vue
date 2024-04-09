@@ -135,7 +135,7 @@ export default {
     },
     mounted() {
         // Obtener los productos
-        axios.get('http://localhost/public/api/indexProducts')
+        axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts')
             .then(response => {
                 this.products = response.data;
                 console.log(response.data);
@@ -145,7 +145,7 @@ export default {
             });
 
         // Obtener las categorías
-        axios.get('http://localhost/public/api/indexCategory')
+        axios.get('http://localhost/2/BackEnd-NegII/public/api/indexCategory')
             .then(response => {
                 this.categories = response.data;
                 console.log(response.data);
@@ -182,7 +182,7 @@ export default {
                 formData.append('IdcategoriesFK', this.category); // Id de la categoría (puedes cambiarlo según tus necesidades)
 
                 // Realizar la solicitud POST para guardar el producto
-                axios.post('http://localhost/public/api/storeProducts', formData, {
+                axios.post('http://localhost/2/BackEnd-NegII/public/api/storeProducts', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido como 'multipart/form-data' para enviar archivos
                     }
@@ -205,7 +205,7 @@ export default {
             }
         },
         loadProducts() {
-            axios.get('http://localhost/public/api/indexProducts')
+            axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts')
                 .then(response => {
                     this.products = response.data;
                     console.log(response.data)
@@ -216,7 +216,7 @@ export default {
         },
         DeleteProduct(productId) {
             if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-                axios.post(`http://localhost/public/api/destroyProducts/${productId}`)
+                axios.post(`http://localhost/2/BackEnd-NegII/public/api/destroyProducts/${productId}`)
                     .then(response => {
                         console.log(response.data);
                         // Recargar la lista de productos después de eliminar uno
@@ -255,7 +255,7 @@ export default {
                     formData.append('CurrentImage', this.currentImage); // Asegúrate de tener esta variable en tu componente
                 }
 
-                axios.post(`http://localhost/public/api/update/${this.currentProductId}/updateProduct`, formData, {
+                axios.post(`http://localhost/2/BackEnd-NegII/public/api/update/${this.currentProductId}/updateProduct`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

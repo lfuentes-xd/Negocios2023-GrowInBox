@@ -105,7 +105,7 @@ export default {
   },
 
   mounted() {
-    axios.get('http://localhost/public/api/indexProducts')
+    axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts')
       .then(response => {
         this.products = response.data;
         console.log(response.data)
