@@ -57,12 +57,12 @@ import axios from "axios";
 import navbar from "../components/navbar.vue"
 export default {
   name: "LoginComponent",
-  data(){
-    return{
-      FormData:{
+  data() {
+    return {
+      FormData: {
         email: '',
         password: '',
-    }
+      }
     }
   },
   components: {
@@ -70,16 +70,18 @@ export default {
   },
   methods: {
     signIn() {
-      axios.post('http://localhost/2/BackEnd-NegII/public/api/login', this.FormData)
-      .then(response=>{
-        console.log("done",response.data);
-        localStorage.setItem('token', response.data.token);
-        this.$router.push({ name: "home" });
-      })
-      .catch(errors=>{
-        console.error( errors);
+      // axios.post('http://localhost/BackEnd-NegII/public/api/login', this.FormData) //lemuel 
+      // axios.get('http://localhost/public/api/indexProducts') //Jonathan
+      axios.post('http://localhost/BackEnd-NegII/public/api/login', this.FormData) 
+        .then(response => {
+          console.log("done", response.data);
+          localStorage.setItem('token', response.data.token);
+          this.$router.push({ name: "home" });
+        })
+        .catch(errors => {
+          console.error(errors);
 
-      });
+        });
     },
   },
 };
@@ -88,6 +90,3 @@ export default {
 <style scoped>
 /* Puedes agregar estilos específicos del componente aquí */
 </style>
-
-      
-   

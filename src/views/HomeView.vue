@@ -76,10 +76,10 @@ export default {
   },
   created() {
     // Obtener todos los productos disponibles
-    axios.get('http://localhost/public/api/indexProducts')
+    // axios.get('http://localhost/public/api/indexProducts') torres
+    axios.get('http://localhost/public/BackEnd-NegII/api/indexProducts')
       .then(response => {
         const productos = response.data;
-
         // Obtener dos productos aleatorios
         const randomIndexes = [];
         while (randomIndexes.length < 2) {

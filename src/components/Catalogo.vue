@@ -1,7 +1,7 @@
 <template>
   <navbar></navbar>
 
-  <h1 class="text-4xl ml-10 mb-10">Catalogo de Invierno</h1>
+  <!-- <h1 class="text-4xl ml-10 mb-10">Catalogo de Invierno</h1> -->
 
   <div class="ml-20 mr-20 flex items-center justify-between">
 
@@ -45,7 +45,7 @@
 
         <div
           class="relative mx-4 -mt-6 h-60 sm:h-72 md:h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-          <img :src="'http://localhost/storage/app/' + producto.Image" alt="Product Image" title="Imagen del producto"
+          <img :src="'http://localhost/BackEnd-NegII/storage/app/public/'+ producto.Image" alt="Product Image" title="Imagen del producto"
             class="w-full h-full object-cover object-center">
         </div>
 
@@ -105,7 +105,9 @@ export default {
   },
 
   mounted() {
-    axios.get('http://localhost/public/api/indexProducts')
+    // axios.get('http://localhost/public/api/indexProducts') //Jonathan
+    // axios.get('http://localhost/BackEnd-NegII/public/api/indexProducts') //lemuel
+    axios.get('http://localhost/BackEnd-NegII/public/api/indexProducts')
       .then(response => {
         this.products = response.data;
         console.log(response.data)

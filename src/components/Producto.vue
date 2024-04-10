@@ -6,7 +6,7 @@ en <template>
 
             <div
                 class="flex-shrink-0 relative mx-4 -mt-6 h-custom mt-3 sm:h-108 md:h-120 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                <img :src="'http://localhost/storage/app/' + producto.Image" alt="Product Image"
+                <img :src="'http://localhost/BackEnd-NegII/storage/app/public/'+ producto.Image" alt="Product Image"
                     title="Imagen del producto" class="w-full h-full object-cover object-center">
             </div>
 
@@ -80,7 +80,9 @@ export default {
         console.log('productId:', productId);
 
         this.currentId = productId;
-        axios.get(`http://localhost/public/api/ShowProduct/${this.currentId}`)
+        // axios.get(`http://localhost/BackEnd-NegII/public/api/ShowProduct/${this.currentId}`) //lemuel
+        // axios.get(`http://localhost/public/api/ShowProduct/${this.currentId}`) // torres
+        axios.get(`http://localhost/BackEnd-NegII/public/api/ShowProduct/${this.currentId}`)
             .then(response => {
                 this.producto = response.data;
                 console.log(response.data)
