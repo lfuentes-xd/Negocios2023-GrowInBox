@@ -71,8 +71,6 @@ export default {
     };
   },
   mounted(){
-
-    
     axios.get("http://localhost/BackEnd-NegII/public/api/User",{
       headers:{
         "Acces-Control-Allow-Origin": "*",
@@ -99,8 +97,8 @@ export default {
   created() {
     // Obtener todos los productos disponibles
     // axios.get('http://localhost/public/api/indexProducts') torres
-    axios.get('http://localhost/public/BackEnd-NegII/api/indexProducts')
-    axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts')
+    axios.get('http://localhost/public/BackEnd-NegII/api/indexProducts') // lemuel
+    // axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts') // carlos
       .then(response => {
         const productos = response.data;
         // Obtener dos productos aleatorios

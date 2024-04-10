@@ -6,17 +6,17 @@
         </div>
         <div class="sm:w-full lg:w-1/3 mx-auto mt-5">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" v-model="usuario.Nombre" class="mt-3 block w-full p-2 border border-black">
+            <input type="text" id="nombre" v-model="usuario.name" class="mt-3 block w-full p-2 border border-black">
             <label for="Correo">Correo</label>
-            <input type="text" id="Correo" v-model="usuario.Correo" class="mt-3 block w-full p-2 border border-black">
-            <label for="pass"> Password</label>
-            <input type="password" id="pass" v-model="usuario.Password" class="mt-3 block w-full p-2 border border-black">
+            <input type="text" id="Correo" v-model="usuario.email" class="mt-3 block w-full p-2 border border-black">
         </div>
     </div>
 </template>
 
 <script>
 import navbar from "../components/navbar.vue"
+import axios from 'axios';
+
 export default {
     name: 'ViewUser',
     components: {
@@ -24,13 +24,25 @@ export default {
     },
     data() {
         return {
-            usuario: {
-                "id": 1,
-                "Nombre": "Leonel De las Torres Cruz",
-                "Correo": "12345678@aguascalientes.tecnm.mx",
-                "Password": "12345678"
-            }
+            usuario: {},
+            token: localStorage.getItem('token')
         }
-    }
+    },
+    created() {
+        axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+            headers: {
+                "Acces-Control-Allow-Origin": "*",
+                "Acces-Control-Allow-Methods": "GET",
+                'Authorization': `Bearer ${this.token}`
+            }
+        })
+            .then(response => {
+                this.usuario = response.data;
+                console.log("datos desde la vista usuarios: ", response.data);
+            })
+            .catch(error => {
+                console.log("error al obtener datos", error);
+            });
+    },
 }
 </script>
