@@ -1,96 +1,131 @@
 <template>
-    <navbar></navbar>
+    <div>
+        <navbar></navbar>
 
-    <br>
-    <div id="div">
-        <h1 class="mb-2 text-3xl font-medium leading-tight text-neutral-800">
-            Carrito de Compras
-        </h1>
         <br>
+        <div id="div">
+            <h1 class="mb-2 text-3xl font-medium leading-tight text-neutral-800">
+                Carrito de Compras
+            </h1>
+            <br>
 
-        <table class="min-w-full">
-            <thead class="bg-gray-200 border-b text-center">
-                <th>Nombre</th>
-                <th>Imagen</th>
-                <th>Precio</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <tr v-for="producto in cartData" :key="producto.id" class="bg-white border-b ">
-                    <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ producto.nombre }}</td>
-                    <td
-                        class="relative mx-4 -mt-4 h-20 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
-                        <img :src="require(`@/assets/product_images/${producto.imagen}`)" alt="Product Image"
-                            title="Imagen del producto" class="w-full h-full object-cover object-center max-w-full">
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ producto.precio }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" colspan="2">
-                        <button class="bg-teal-700 text-white px-4 py-2 rounded-l rounded-r">Comprar</button>
-                        <br>
-                        <br>
-                        <button @click="decrement(producto)" class="bg-green-700 text-white px-4 py-2 rounded-l">-</button>
-                        <button class="bg-gray-200 text-gray-700 px-4 py-2">{{ producto.cantidad }}</button>
-                        <button @click="increment(producto)" class="bg-green-700 text-white px-4 py-2 rounded-r">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"> Total: </td>
-                    <td>$ {{ total }}</td>
-                    <td>
-                        <button class="bg-teal-700 text-white px-4 py-2 rounded-l rounded-r" @click="goToPayPal">Comprar carrito</button>
-                    </td>
+            <table class="min-w-full">
+                <thead class="bg-gray-200 border-b text-center">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="pRow in cartProducts" :key="pRow.cart_id" class="bg-white border-b ">
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ pRow.product.Name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{
+                        pRow.product.Description }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ pRow.product.Price
+                            }}
+                        </td>
+                        <td
+                            class="relative mx-4 -mt-4 h-20 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
+                            <img :src="pRow.product.Image" alt="Producto"
+                                class="w-full h-full object-cover object-center max-w-full">
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <button @click="removeFromCart(pRow.cart_id)"
+                                class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-                </tr>
-
-            </tbody>
-        </table>
-
+            <div class="mt-4 flex justify-between">
+                <p class="text-xl font-semibold">Total: ${{ cartTotal }}</p>
+                <div>
+                    <button @click="goToPayPal"
+                        class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Comprar Todo</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import navbar from "../components/navbar.vue"
-import cart from '../../cart.json'
-export default {
-    name: 'CartComponent',
-    props: {
-        msg: String
-    },
-    components: {
-        navbar
-    },
-    methods: {
-        increment(producto) {
-            producto.cantidad++;
-        },
-        decrement(producto) {
-            if (producto.cantidad > 0) {
-                producto.cantidad--;
-            }
-        },
-        goToPayPal() {
-            this.$router.push({ name: 'paypal', query: { total: this.total } });
-            console.log(this.total);
-        }
-    },
-    computed: {
-        total() {
-            return this.cartData.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
-        }
-    },
+import navbar from "../components/navbar.vue";
+import axios from 'axios';
 
+export default {
     data() {
         return {
-            cartData: cart.productos.map(producto => ({ ...producto, cantidad: 1 })),
-        }
+            token: localStorage.getItem('token'),
+            userData: null,
+            cartProducts: [],
+            cartTotal: 0
+        };
+    },
+    mounted() {
+        this.getUserData();
+    },
+    components: {
+        navbar,
+    },
+    methods: {
+        getUserData() {
+            axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET",
+                    'Authorization': `Bearer ${this.token}`
+                }
+            })
+                .then(response => {
+                    this.userData = response.data;
+                    this.getCartProducts();
+                })
+                .catch(error => {
+                    console.error("Error al obtener datos del usuario:", error);
+                });
+        },
+        getCartProducts() {
+            axios.get(`http://localhost/BackEnd-NegII/public/api/Cart/${this.userData.id}/products`)
+                .then(response => {
+                    this.cartProducts = response.data;
+                    this.calculateCartTotal();
+                })
+                .catch(error => {
+                    console.error("Error al obtener productos del carrito:", error);
+                });
+        },
+        calculateCartTotal() {
+            this.cartTotal = this.cartProducts.reduce((total, pRow) => total + parseFloat(pRow.product.Price), 0);
+        },
+        removeFromCart(cartId) {
+            axios.delete(`http://localhost/BackEnd-NegII/public/api/Cart/${cartId}/delete`)
+                .then(() => {
+                    this.getCartProducts();
+                })
+                .catch(error => {
+                    console.error("Error al eliminar producto del carrito:", error);
+                });
+        },
+        goToPayPal() {
+            // Obtener solo los cart_id de los productos en el carrito
 
+            // Redireccionar a la página de PayPal y pasar el cartTotal y los cart_id como parámetros de consulta
+            this.$router.push({
+                name: 'paypal',
+                query: {
+                    total: this.cartTotal,
+                }
+            });
+        }
     }
-}
+};
 </script>
 
 <style scoped>
 #button2 {
-      display: none;
-    }
-
+    display: none;
+}
 </style>
