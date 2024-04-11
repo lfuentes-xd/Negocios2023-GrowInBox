@@ -6,7 +6,7 @@ en <template>
 
             <div
                 class="flex-shrink-0 relative mx-4 -mt-6 h-custom mt-3 sm:h-108 md:h-120 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                <img :src="'http://localhost/BackEnd-NegII/storage/app/public/'+ producto.Image" alt="Product Image"
+                <img :src="'http://localhost/BackEnd-NegII/storage/app/public/' + producto.Image" alt="Product Image"
                     title="Imagen del producto" class="w-full h-full object-cover object-center">
             </div>
 
@@ -58,16 +58,65 @@ export default {
     data() {
         return {
             producto: [],
-            isClicked: false
+            isClicked: false,
+            token: localStorage.getItem('token')
         };
     },
     methods: {
         showAlert() {
-            alert('Producto agregado al carrito');
+            // Verifica si se han obtenido los datos del usuario
+            if (this.userData && this.userData.id) {
+                // Imprime en la consola la cantidad, el ID del usuario y el ID del producto
+                console.log('Quantity:', 1);
+                console.log('IdUserFk:', this.userData.id);
+                console.log('IdProductFk:', this.producto.id);
+
+                // Envía la solicitud para agregar el producto al carrito
+                axios.post('http://localhost/BackEnd-NegII/public/api/addToCart', {
+                    Quantity: 1, // Cantidad predeterminada, puedes cambiarla según necesites
+                    IdUserFk: this.userData.id, // Utiliza el ID del usuario obtenido
+                    IdProductFk: this.producto.id // Envía el ID del producto
+                }, {
+                    headers: {
+                        // Agrega la cabecera CORS aquí
+                        "Access-Control-Allow-Origin": "*", // Permite solicitudes desde cualquier origen
+                        "Acces-Control-Allow-Methods": "POST",
+                        'Authorization': `Bearer ${this.token}`
+                    }
+                })
+                    .then(() => {
+                        // Si la solicitud se realiza con éxito, muestra un mensaje
+                        alert('Producto agregado al carrito');
+                    })
+                    .catch(error => {
+                        // Si hay un error en la solicitud, muestra un mensaje de error
+                        console.error('Error al agregar producto al carrito:', error);
+                    });
+            } else {
+                // Si no se han obtenido los datos del usuario, muestra un mensaje de error
+                console.error('No se han obtenido los datos del usuario');
+            }
         },
         toggleWishlist() {
             this.isClicked = !this.isClicked; // Cambia el estado del corazón al hacer clic
         }
+    },
+    mounted() {
+        axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+            headers: {
+                "Acces-Control-Allow-Origin": "*",
+                "Acces-Control-Allow-Methods": "GET",
+                'Authorization': `Bearer ${this.token}`
+            }
+        })
+            .then(response => {
+                // Almacena los datos del usuario en la propiedad userData
+                this.userData = response.data;
+                console.log("datos", response.data);
+            })
+            .catch(error => {
+                console.log("error al obtener datos", error);
+            });
     },
     components: {
         PayPalButton,
@@ -158,25 +207,31 @@ export default {
 
 /* CSS personalizado */
 .h-custom {
-  /* Media queries para hacerla reactiva */
-  @media (min-width: 240px) {
-    height: 208px; /* Altura para pantallas pequeñas (640px y superiores) */
-  }
 
-  @media (min-width: 668px) {
-    height: 420px; /* Altura para pantallas medianas (768px y superiores) */
-  }
+    /* Media queries para hacerla reactiva */
+    @media (min-width: 240px) {
+        height: 208px;
+        /* Altura para pantallas pequeñas (640px y superiores) */
+    }
 
-  @media (min-width: 868px) {
-    height: 620px; /* Altura para pantallas medianas (768px y superiores) */
-  }
+    @media (min-width: 668px) {
+        height: 420px;
+        /* Altura para pantallas medianas (768px y superiores) */
+    }
 
-  @media (min-width: 1080px) {
-    height: 820px; /* Altura para pantallas medianas (768px y superiores) */
-  }
+    @media (min-width: 868px) {
+        height: 620px;
+        /* Altura para pantallas medianas (768px y superiores) */
+    }
 
-  @media (min-width: 2160px) {
-    height: 940px; /* Altura para pantallas medianas (768px y superiores) */
-  }
+    @media (min-width: 1080px) {
+        height: 820px;
+        /* Altura para pantallas medianas (768px y superiores) */
+    }
+
+    @media (min-width: 2160px) {
+        height: 940px;
+        /* Altura para pantallas medianas (768px y superiores) */
+    }
 }
 </style>

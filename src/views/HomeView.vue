@@ -3,7 +3,8 @@
 
   <div class="home">
 
-    <div ref="mouseDiv" @mousemove="onMousemoveA" :class="{ 'hiddenBG': y < 5, 'visibleBG': y >= 5 }" style="margin-bottom: 1cm;">
+    <div ref="mouseDiv" @mousemove="onMousemoveA" :class="{ 'hiddenBG': y < 5, 'visibleBG': y >= 5 }"
+      style="margin-bottom: 1cm;">
 
       <p :class="{ 'hiddenA-text': y < 5, 'hiddenB-text': y >= 5 }">.</p>
       <h1 :class="{ 'hiddenA-text': y < 5, 'visible-text': y >= 5 }">Revisa los productos mas vendidos</h1>
@@ -65,27 +66,27 @@ export default {
       y: ref(0),
       productos: [],
       productoAlt: [],
-      userData:null,
+      userData: null,
       token: localStorage.getItem('token')
-      
+
     };
   },
-  mounted(){
-    axios.get("http://localhost/BackEnd-NegII/public/api/User",{
-      headers:{
+  mounted() {
+    axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+      headers: {
         "Acces-Control-Allow-Origin": "*",
         "Acces-Control-Allow-Methods": "GET",
         'Authorization': `Bearer ${this.token}`
       }
     })
-    .then(response=>{
-      this.userData= response.data;
-      console.log("datos", response.data);
-      
-    })
-    .catch(error=> {
-      console.log("error al obtener datos", error);
-    });
+      .then(response => {
+        this.userData = response.data;
+        console.log("datos", response.data);
+
+      })
+      .catch(error => {
+        console.log("error al obtener datos", error);
+      });
   },
   methods: {
     onMousemoveA(e) {
@@ -97,8 +98,11 @@ export default {
   created() {
     // Obtener todos los productos disponibles
     // axios.get('http://localhost/public/api/indexProducts') torres
-    axios.get('http://localhost/public/BackEnd-NegII/api/indexProducts') // lemuel
+    // axios.get('http://localhost/public/BackEnd-NegII/api/indexProducts') // lemuel
     // axios.get('http://localhost/2/BackEnd-NegII/public/api/indexProducts') // carlos
+
+    /** Esto hace que se congele
+    axios.get('http://localhost/BackEnd-NegII/public/api/indexProducts') // Rogelio
       .then(response => {
         const productos = response.data;
         // Obtener dos productos aleatorios
@@ -114,6 +118,7 @@ export default {
       .catch(error => {
         console.error('Error al obtener los productos:', error);
       });
+    */
   }
 };
 </script>
