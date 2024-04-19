@@ -111,7 +111,9 @@ export default {
         },
         goToPayPal() {
             // Obtener solo los cart_id de los productos en el carrito
-
+            const cartIds = this.cartProducts.map(product => product.cart_id);
+            const cartIdsJSON = JSON.stringify(cartIds);
+            localStorage.setItem('cartIds', cartIdsJSON);
             // Redireccionar a la página de PayPal y pasar el cartTotal y los cart_id como parámetros de consulta
             this.$router.push({
                 name: 'paypal',
