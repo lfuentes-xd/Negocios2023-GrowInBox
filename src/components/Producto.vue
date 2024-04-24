@@ -6,7 +6,7 @@ en <template>
 
             <div
                 class="flex-shrink-0 relative mx-4 -mt-6 h-custom mt-3 sm:h-108 md:h-120 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                <img :src="'http://localhost/BackEnd-NegII/storage/app/public/' + producto.Image" alt="Product Image"
+                <img :src="'http://localhost/storage/app/public/' + producto.Image" alt="Product Image"
                     title="Imagen del producto" class="w-full h-full object-cover object-center">
             </div>
 
@@ -72,7 +72,7 @@ export default {
                 console.log('IdProductFk:', this.producto.id);
 
                 // Envía la solicitud para agregar el producto al carrito
-                axios.post('http://localhost/BackEnd-NegII/public/api/addToCart', {
+                axios.post('http://localhost/public/api/addToCart', {
                     Quantity: 1, // Cantidad predeterminada, puedes cambiarla según necesites
                     IdUserFk: this.userData.id, // Utiliza el ID del usuario obtenido
                     IdProductFk: this.producto.id // Envía el ID del producto
@@ -102,7 +102,7 @@ export default {
         }
     },
     mounted() {
-        axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+        axios.get("http://localhost/public/api/User", {
             headers: {
                 "Acces-Control-Allow-Origin": "*",
                 "Acces-Control-Allow-Methods": "GET",
@@ -131,7 +131,7 @@ export default {
         this.currentId = productId;
         // axios.get(`http://localhost/BackEnd-NegII/public/api/ShowProduct/${this.currentId}`) //lemuel
         // axios.get(`http://localhost/public/api/ShowProduct/${this.currentId}`) // torres
-        axios.get(`http://localhost/BackEnd-NegII/public/api/ShowProduct/${this.currentId}`)
+        axios.get(`http://localhost/public/api/ShowProduct/${this.currentId}`)
             .then(response => {
                 this.producto = response.data;
                 console.log(response.data)

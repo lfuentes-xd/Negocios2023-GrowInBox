@@ -72,7 +72,7 @@ export default {
     signIn() {
       // axios.post('http://localhost/BackEnd-NegII/public/api/login', this.FormData) //lemuel 
       // axios.get('http://localhost/public/api/indexProducts') //Jonathan
-      axios.post('http://localhost/BackEnd-NegII/public/api/login', this.FormData) 
+      axios.post('http://localhost/public/api/login', this.FormData) 
         .then(response => {
           console.log("done", response.data);
           localStorage.setItem('token', response.data.token);

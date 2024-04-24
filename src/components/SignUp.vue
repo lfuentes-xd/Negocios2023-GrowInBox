@@ -117,7 +117,7 @@ export default {
 
       // axios.post('http://localhost/BackEnd-NegII/public/api/UserRegister', this.formData) // lemuel 
       // axios.post('http://localhost/public/api/UserRegister', this.formData) // torres
-      axios.post('http://localhost/BackEnd-NegII/public/api/UserRegister', this.formData)
+      axios.post('http://localhost/public/api/UserRegister', this.formData)
         .then(() => {
           console.log('registered');
           

@@ -23,14 +23,13 @@
                     <tr v-for="pRow in cartProducts" :key="pRow.cart_id" class="bg-white border-b ">
                         <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ pRow.product.Name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{
-                        pRow.product.Description }}</td>
+                            pRow.product.Description }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ pRow.product.Price
                             }}
                         </td>
-                        <td
-                            class="relative mx-4 -mt-4 h-20 sm:h-100 md:h-100 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
-                            <img :src="pRow.product.Image" alt="Producto"
-                                class="w-full h-full object-cover object-center max-w-full">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <img :src="'http://localhost/storage/app/public/' + pRow.product.Image" alt="Product Image"
+                                title="Imagen del producto" class="w-24 h-24 object-cover object-center">
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             <button @click="removeFromCart(pRow.cart_id)"
@@ -44,7 +43,8 @@
                 <p class="text-xl font-semibold">Total: ${{ cartTotal }}</p>
                 <div>
                     <button @click="goToPayPal"
-                        class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Comprar Todo</button>
+                        class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Comprar
+                        Todo</button>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@ export default {
     },
     methods: {
         getUserData() {
-            axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+            axios.get("http://localhost/public/api/User", {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "GET",
@@ -88,7 +88,7 @@ export default {
                 });
         },
         getCartProducts() {
-            axios.get(`http://localhost/BackEnd-NegII/public/api/Cart/${this.userData.id}/products`)
+            axios.get(`http://localhost/public/api/Cart/${this.userData.id}/products`)
                 .then(response => {
                     this.cartProducts = response.data;
                     this.calculateCartTotal();
@@ -101,7 +101,7 @@ export default {
             this.cartTotal = this.cartProducts.reduce((total, pRow) => total + parseFloat(pRow.product.Price), 0);
         },
         removeFromCart(cartId) {
-            axios.delete(`http://localhost/BackEnd-NegII/public/api/Cart/${cartId}/delete`)
+            axios.delete(`http://localhost/public/api/Cart/${cartId}/delete`)
                 .then(() => {
                     this.getCartProducts();
                 })

@@ -50,7 +50,7 @@ export default {
     };
   },
   mounted() {
-    axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+    axios.get("http://localhost/public/api/User", {
       headers: {
         "Acces-Control-Allow-Origin": "*",
         "Acces-Control-Allow-Methods": "GET",
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     getCar(id) {
-      axios.get(`http://localhost/BackEnd-NegII/public/api/indexShopping/${id}`, {
+      axios.get(`http://localhost/public/api/indexShopping/${id}`, {
         headers: {
           "Acces-Control-Allow-Origin": "*",
           "Acces-Control-Allow-Methods": "GET",

@@ -29,7 +29,7 @@ export default {
         }
     },
     created() {
-        axios.get("http://localhost/BackEnd-NegII/public/api/User", {
+        axios.get("http://localhost/public/api/User", {
             headers: {
                 "Acces-Control-Allow-Origin": "*",
                 "Acces-Control-Allow-Methods": "GET",
